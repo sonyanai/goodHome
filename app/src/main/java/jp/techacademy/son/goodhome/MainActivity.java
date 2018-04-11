@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
                     return true;
 
                 case R.id.item_Favorite:
-                    fragmentFavorite = new FovoriteFragment();
+                    fragmentFavorite = new FavoriteFragment();
                     transaction.replace(R.id.container, fragmentFavorite);
                     transaction.commit();
                     return true;
@@ -47,12 +47,6 @@ public class MainActivity extends AppCompatActivity {
                     transaction.commit();
                     return true;
 
-
-                case R.id.item_Profile:
-                    fragmentProfile = new ProfileFragment();
-                    transaction.replace(R.id.container, fragmentProfile);
-                    transaction.commit();
-                    return true;
             }
             return false;
         }
