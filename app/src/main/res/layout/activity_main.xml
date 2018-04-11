@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:layout_alignParentBottom="true"
-        android:id="@+id/bottom_navigation_view"
+        android:id="@+id/bottom_navigation"
         app:menu="@menu/item_bottom_navigation"/>
 
 

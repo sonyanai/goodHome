@@ -3,21 +3,21 @@
 
 <group android:checkableBehavior="single">
     <item
-        android:id="@+id/item_TimeLine"
-        android:title="t"
+        android:id="@+id/item_Search"
+        android:title="s"
         android:icon="@drawable/ic_launcher_background"/>
     <!--android:icon="@drawable/ic_search"-->
     <item
-        android:id="@+id/item_Search"
+        android:id="@+id/item_Favorite"
         android:title="f"
-        android:icon="@drawable/ic_launcher_background"/>
-    <item
-        android:id="@+id/item_Notification"
-        android:title="n"
         android:icon="@drawable/ic_launcher_background"/>
     <item
         android:id="@+id/item_Message"
         android:title="m"
+        android:icon="@drawable/ic_launcher_background"/>
+    <item
+        android:id="@+id/item_Plan"
+        android:title="p"
         android:icon="@drawable/ic_launcher_background"/>
 
 </group>
