@@ -14,7 +14,6 @@ public class MainActivity extends AppCompatActivity {
     public SearchFragment fragmentSearch;
     public FavoriteFragment fragmentFavorite;
     public MessageFragment fragmentMessage;
-    public PlanFragment fragmentPlan;
 
 
 
@@ -41,12 +40,6 @@ public class MainActivity extends AppCompatActivity {
                     transaction.commit();
                     return true;
 
-                case R.id.item_Plan:
-                    fragmentPlan = new PlanFragment();
-                    transaction.replace(R.id.container, fragmentPlan);
-                    transaction.commit();
-                    return true;
-
             }
             return false;
         }
@@ -57,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
 
 
