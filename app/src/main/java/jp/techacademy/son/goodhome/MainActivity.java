@@ -1,11 +1,16 @@
 package jp.techacademy.son.goodhome;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
     public SearchFragment fragmentSearch;
     public FavoriteFragment fragmentFavorite;
     public MessageFragment fragmentMessage;
+
+    private FirebaseUser user;
 
 
 
@@ -61,5 +68,34 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         //リスナーのセット
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu_main,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.postButton:
+                user = FirebaseAuth.getInstance().getCurrentUser();
+                if(user==null) {
+                    intentLogin();
+                }else{
+                    //  onSelfCheck();
+               /*     PostFragment fragmentPost = new PostFragment();
+                    FragmentTransaction transactions = getSupportFragmentManager().beginTransaction();
+                    transactions.replace(R.id.container, fragmentPost);
+                    transactions.commit();*/
+                }
+                break;
+        }
+        return false;
+    }
+    public void intentLogin(){
+        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+        startActivity(intent);
     }
 }
