@@ -66,6 +66,9 @@ public class LoginActivity extends AppCompatActivity {
 
 
         //loginKeyかcのとき客用bのとき企業用SearchFragmentから受け取る
+        //企業用の時reform or rebuild or どっちもかでreformに保存rebuildに保存両方に保存
+
+
 
 
 
