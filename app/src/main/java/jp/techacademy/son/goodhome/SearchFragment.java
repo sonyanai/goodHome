@@ -63,12 +63,17 @@ public class SearchFragment extends Fragment {
                             .replace(R.id.container,fragmentList,ListFragment.TAG)
                             .commit();
                 }else{
-                    AccountFragment fragmentAccount = new AccountFragment();
-                    getFragmentManager().beginTransaction()
-                            .replace(R.id.container,fragmentAccount,AccountFragment.TAG)
-                            .commit();
+                    //AccountFragment fragmentAccount = new AccountFragment();
+                    //getFragmentManager().beginTransaction()
+                    //        .replace(R.id.container,fragmentAccount,AccountFragment.TAG)
+                    //        .commit();
                     //インデントで番号飛ばすそれを取得してどっちのレイアウトにするか切り替える
                     //こっちは客
+                    MainActivity activity = (MainActivity)getActivity();
+                    activity.intentLogin();
+                    String loginKey = "c";
+
+
                 }
 
 
@@ -86,13 +91,16 @@ public class SearchFragment extends Fragment {
                             .replace(R.id.container,fragmentList,ListFragment.TAG)
                             .commit();
                 }else{
-                    AccountFragment fragmentAccount = new AccountFragment();
-                    getFragmentManager().beginTransaction()
-                            .replace(R.id.container,fragmentAccount,AccountFragment.TAG)
-                            .commit();
+                    //AccountFragment fragmentAccount = new AccountFragment();
+                    //getFragmentManager().beginTransaction()
+                    //        .replace(R.id.container,fragmentAccount,AccountFragment.TAG)
+                    //        .commit();
 
                     //インデントで番号飛ばすそれを取得してどっちのレイアウトにするか切り替える
                     //こっちは企業
+                    MainActivity activity = (MainActivity)getActivity();
+                    activity.intentLogin();
+                    String loginKey = "b";
                 }
 
 

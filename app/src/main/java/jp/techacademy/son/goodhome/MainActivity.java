@@ -3,11 +3,13 @@ package jp.techacademy.son.goodhome;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -88,19 +90,38 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        user = FirebaseAuth.getInstance().getCurrentUser();
         switch (item.getItemId()){
-            case R.id.postButton:
-                user = FirebaseAuth.getInstance().getCurrentUser();
+            case R.id.loginButton:
                 if(user==null) {
-                    intentLogin();
+                    //intentLogin();
+                    SearchFragment fragmentSearch = new SearchFragment();
+                    transaction.replace(R.id.container, fragmentSearch);
+                    transaction.commit();
                 }else{
-                    //  onSelfCheck();
-               /*     PostFragment fragmentPost = new PostFragment();
-                    FragmentTransaction transactions = getSupportFragmentManager().beginTransaction();
-                    transactions.replace(R.id.container, fragmentPost);
-                    transactions.commit();*/
+                    View view = findViewById(android.R.id.content);
+                    Snackbar.make(view, "ログイン中です", Snackbar.LENGTH_LONG).show();
                 }
                 break;
+            case R.id.accountButton:
+                if(user==null){
+                    //intentLogin();
+                    SearchFragment fragmentSearch = new SearchFragment();
+                    transaction.replace(R.id.container, fragmentSearch);
+                    transaction.commit();
+                }else{
+                    AccountFragment fragmentAccount = new AccountFragment();
+                    transaction.replace(R.id.container, fragmentAccount);
+                    transaction.commit();
+                }
+                break;
+            case R.id.sortButton:
+                SortFragment fragmentSort = new SortFragment();
+                transaction.replace(R.id.container, fragmentSort);
+                transaction.commit();
+                break;
+
         }
         return false;
     }
