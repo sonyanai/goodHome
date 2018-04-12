@@ -59,7 +59,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-
+        //Fragmentで最初の画面の設定をする
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        // Fragmentを作成します
+        SearchFragment fragmentSearch = new SearchFragment();
+        // コードからFragmentを追加
+        // Fragmentの追加や削除といった変更を行う際は、Transactionを利用します
+        // 新しく追加を行うのでaddを使用します
+        // メソッドの1つ目の引数は対象のViewGroupのID、2つ目の引数は追加するfragment
+        transaction.add(R.id.container, fragmentSearch);
+        // 最後にcommitを使用することで変更を反映します
+        transaction.commit();
 
 
 

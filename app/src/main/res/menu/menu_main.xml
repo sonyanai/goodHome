@@ -4,10 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="jp.techacademy.refuse.black.reject.MainActivity">
 
-    <item
-        android:id="@+id/postButton"
-        android:icon="@drawable/plus"
-        android:orderInCategory="100"
-        app:showAsAction="ifRoom"
-        android:title="action_add"/>
+    <group>
+        <item
+            android:id="@+id/postButton"
+            android:icon="@drawable/plus"
+            android:orderInCategory="100"
+            app:showAsAction="never"
+            android:title="login"/>
+        <item
+            android:id="@+id/tButton"
+            android:icon="@drawable/plus"
+            android:orderInCategory="100"
+            app:showAsAction="never"
+            android:title="並び替え"/>
+    </group>
+
+
 </menu>

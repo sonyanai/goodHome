@@ -17,6 +17,7 @@ public class SearchFragment extends Fragment {
 
     Button reformButton;
     Button rebuildButton;
+    int flag = 0;
 
 
 
@@ -39,26 +40,62 @@ public class SearchFragment extends Fragment {
 
 
 
+        //インテントで値取得ログインに行く前に
+
+        //flagが0なら最初のサーチ画面1ならログインする前に客か起業かを選択させる
+
+        if(flag==1){
+            reformButton.setText("個人様");
+            rebuildButton.setText("企業様");
+        }
+
+
+
+
+
         view.findViewById(R.id.reformButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                ListFragment fragmentList = new ListFragment();
-                getFragmentManager().beginTransaction()
-                        .replace(R.id.container,fragmentList,ListFragment.TAG)
-                        .commit();
+                if(flag==0){
+                    ListFragment fragmentList = new ListFragment();
+                    getFragmentManager().beginTransaction()
+                            .replace(R.id.container,fragmentList,ListFragment.TAG)
+                            .commit();
+                }else{
+                    AccountFragment fragmentAccount = new AccountFragment();
+                    getFragmentManager().beginTransaction()
+                            .replace(R.id.container,fragmentAccount,AccountFragment.TAG)
+                            .commit();
+                    //インデントで番号飛ばすそれを取得してどっちのレイアウトにするか切り替える
+                    //こっちは客
+                }
+
+
 
             }
         });
 
-        view.findViewById(R.id.reformButton).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.rebuildButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                ListFragment fragmentList = new ListFragment();
-                getFragmentManager().beginTransaction()
-                        .replace(R.id.container,fragmentList,ListFragment.TAG)
-                        .commit();
+                if(flag==0){
+                    ListFragment fragmentList = new ListFragment();
+                    getFragmentManager().beginTransaction()
+                            .replace(R.id.container,fragmentList,ListFragment.TAG)
+                            .commit();
+                }else{
+                    AccountFragment fragmentAccount = new AccountFragment();
+                    getFragmentManager().beginTransaction()
+                            .replace(R.id.container,fragmentAccount,AccountFragment.TAG)
+                            .commit();
+
+                    //インデントで番号飛ばすそれを取得してどっちのレイアウトにするか切り替える
+                    //こっちは企業
+                }
+
+
             }
         });
 
