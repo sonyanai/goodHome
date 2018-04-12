@@ -10,6 +10,8 @@ public class Const {
 
     public static final String NameKEY = "name"; // Preferenceに表示名を保存する時のキー
 
+    public static final String KEY = "key";
+/*
     public static final String mUidKEY = "mUid";
     public static final String FollowCountKEY = "followCount";
     public static final String FollowerCountKEY = "followerCount";
@@ -19,5 +21,5 @@ public class Const {
     public static final String FavAreaKEY = "favArea";
     public static final String CommentKEY = "comment";
     public static final String IconBitmapStringKEY = "iconBitmapString";
-
+*/
 }

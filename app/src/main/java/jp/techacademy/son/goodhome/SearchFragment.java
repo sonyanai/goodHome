@@ -1,6 +1,8 @@
 package jp.techacademy.son.goodhome;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -72,6 +74,7 @@ public class SearchFragment extends Fragment {
                     MainActivity activity = (MainActivity)getActivity();
                     activity.intentLogin();
                     String loginKey = "c";
+                    saveKey(loginKey);
 
 
                 }
@@ -101,6 +104,7 @@ public class SearchFragment extends Fragment {
                     MainActivity activity = (MainActivity)getActivity();
                     activity.intentLogin();
                     String loginKey = "b";
+                    saveKey(loginKey);
                 }
 
 
@@ -109,5 +113,14 @@ public class SearchFragment extends Fragment {
 
 
     }
+
+    private void saveKey(String key) {
+        // Preferenceに保存する
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString(Const.KEY, key);
+        editor.commit();
+    }
+
 
 }
