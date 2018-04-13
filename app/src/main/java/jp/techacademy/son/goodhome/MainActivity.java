@@ -95,8 +95,11 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.loginButton:
                 if(user==null) {
-                    //intentLogin();
+                    String flag ="1";
+                    Bundle bundle = new Bundle();
+                    bundle.putString("flag", flag);
                     SearchFragment fragmentSearch = new SearchFragment();
+                    fragmentSearch.setArguments(bundle);
                     transaction.replace(R.id.container, fragmentSearch);
                     transaction.commit();
                 }else{
@@ -106,8 +109,14 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.accountButton:
                 if(user==null){
-                    //intentLogin();
+                    View view = findViewById(android.R.id.content);
+                    Snackbar.make(view, "アカウントを作成してください", Snackbar.LENGTH_LONG).show();
+
+                    String flag ="1";
+                    Bundle bundle = new Bundle();
+                    bundle.putString("flag", flag);
                     SearchFragment fragmentSearch = new SearchFragment();
+                    fragmentSearch.setArguments(bundle);
                     transaction.replace(R.id.container, fragmentSearch);
                     transaction.commit();
                 }else{
@@ -121,7 +130,6 @@ public class MainActivity extends AppCompatActivity {
                 transaction.replace(R.id.container, fragmentSort);
                 transaction.commit();
                 break;
-
         }
         return false;
     }

@@ -19,7 +19,7 @@ public class SearchFragment extends Fragment {
 
     Button reformButton;
     Button rebuildButton;
-    int flag = 0;
+    String flag = "0";
 
 
 
@@ -42,11 +42,19 @@ public class SearchFragment extends Fragment {
 
 
 
+
+
+
         //インテントで値取得ログインに行く前に
+        Bundle bundle = getArguments();
+        if (bundle!=null){
+            String aaa = bundle.getString("flag");
+            flag = aaa;
+        }
 
         //flagが0なら最初のサーチ画面1ならログインする前に客か起業かを選択させる
 
-        if(flag==1){
+        if(flag.equals("1")){
             reformButton.setText("個人様");
             rebuildButton.setText("企業様");
         }
@@ -59,7 +67,7 @@ public class SearchFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                if(flag==0){
+                if(flag.equals("0")){
                     ListFragment fragmentList = new ListFragment();
                     getFragmentManager().beginTransaction()
                             .replace(R.id.container,fragmentList,ListFragment.TAG)
@@ -71,11 +79,10 @@ public class SearchFragment extends Fragment {
                     //        .commit();
                     //インデントで番号飛ばすそれを取得してどっちのレイアウトにするか切り替える
                     //こっちは客
-                    MainActivity activity = (MainActivity)getActivity();
-                    activity.intentLogin();
                     String loginKey = "c";
                     saveKey(loginKey);
-
+                    MainActivity activity = (MainActivity)getActivity();
+                    activity.intentLogin();
 
                 }
 
@@ -88,7 +95,7 @@ public class SearchFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                if(flag==0){
+                if(flag.equals("0")){
                     ListFragment fragmentList = new ListFragment();
                     getFragmentManager().beginTransaction()
                             .replace(R.id.container,fragmentList,ListFragment.TAG)
@@ -101,10 +108,11 @@ public class SearchFragment extends Fragment {
 
                     //インデントで番号飛ばすそれを取得してどっちのレイアウトにするか切り替える
                     //こっちは企業
-                    MainActivity activity = (MainActivity)getActivity();
-                    activity.intentLogin();
                     String loginKey = "b";
                     saveKey(loginKey);
+                    MainActivity activity = (MainActivity)getActivity();
+                    activity.intentLogin();
+
                 }
 
 
