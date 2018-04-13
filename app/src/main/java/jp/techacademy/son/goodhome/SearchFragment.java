@@ -45,47 +45,16 @@ public class SearchFragment extends Fragment {
 
 
 
-        //インテントで値取得ログインに行く前に
-        Bundle bundle = getArguments();
-        if (bundle!=null){
-            String aaa = bundle.getString("flag");
-            flag = aaa;
-        }
-
-        //flagが0なら最初のサーチ画面1ならログインする前に客か起業かを選択させる
-
-        if(flag.equals("1")){
-            reformButton.setText("個人様");
-            rebuildButton.setText("企業様");
-        }
-
-
-
 
 
         view.findViewById(R.id.reformButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if(flag.equals("0")){
-                    ListFragment fragmentList = new ListFragment();
-                    getFragmentManager().beginTransaction()
-                            .replace(R.id.container,fragmentList,ListFragment.TAG)
-                            .commit();
-                }else{
-                    //AccountFragment fragmentAccount = new AccountFragment();
-                    //getFragmentManager().beginTransaction()
-                    //        .replace(R.id.container,fragmentAccount,AccountFragment.TAG)
-                    //        .commit();
-                    //インデントで番号飛ばすそれを取得してどっちのレイアウトにするか切り替える
-                    //こっちは客
-                    String loginKey = "c";
-                    saveKey(loginKey);
-                    MainActivity activity = (MainActivity)getActivity();
-                    activity.intentLogin();
-
-                }
-
+                ListFragment fragmentList = new ListFragment();
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.container,fragmentList,ListFragment.TAG)
+                        .commit();
 
 
             }
@@ -95,39 +64,16 @@ public class SearchFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                if(flag.equals("0")){
-                    ListFragment fragmentList = new ListFragment();
-                    getFragmentManager().beginTransaction()
-                            .replace(R.id.container,fragmentList,ListFragment.TAG)
-                            .commit();
-                }else{
-                    //AccountFragment fragmentAccount = new AccountFragment();
-                    //getFragmentManager().beginTransaction()
-                    //        .replace(R.id.container,fragmentAccount,AccountFragment.TAG)
-                    //        .commit();
-
-                    //インデントで番号飛ばすそれを取得してどっちのレイアウトにするか切り替える
-                    //こっちは企業
-                    String loginKey = "b";
-                    saveKey(loginKey);
-                    MainActivity activity = (MainActivity)getActivity();
-                    activity.intentLogin();
-
-                }
+                ListFragment fragmentList = new ListFragment();
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.container,fragmentList,ListFragment.TAG)
+                        .commit();
 
 
             }
         });
 
 
-    }
-
-    private void saveKey(String key) {
-        // Preferenceに保存する
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        SharedPreferences.Editor editor = sp.edit();
-        editor.putString(Const.KEY, key);
-        editor.commit();
     }
 
 

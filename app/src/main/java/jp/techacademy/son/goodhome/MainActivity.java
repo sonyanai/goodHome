@@ -95,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.loginButton:
                 if(user==null) {
+                    /*
                     String flag ="1";
                     Bundle bundle = new Bundle();
                     bundle.putString("flag", flag);
@@ -102,6 +103,8 @@ public class MainActivity extends AppCompatActivity {
                     fragmentSearch.setArguments(bundle);
                     transaction.replace(R.id.container, fragmentSearch);
                     transaction.commit();
+                    */
+                    intentLogin();
                 }else{
                     View view = findViewById(android.R.id.content);
                     Snackbar.make(view, "ログイン中です", Snackbar.LENGTH_LONG).show();

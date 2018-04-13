@@ -2,6 +2,7 @@ package jp.techacademy.son.goodhome;
 
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +13,12 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
-import android.widget.TextView;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -41,6 +47,11 @@ public class CustomerLoginFragment extends Fragment {
     EditText requestEditText;
     Button searchButton;
     Button chatButton;
+    String type = "";
+    String key;
+    DatabaseReference databaseReference;
+    DatabaseReference customerPathRef;
+    String sex;
 
 
     @Override
@@ -76,84 +87,181 @@ public class CustomerLoginFragment extends Fragment {
     public void onViewCreated(View view,Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        customerPathRef = databaseReference.child(Const.CustomerPath);
 
 
-        view.findViewById(R.id.searchButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-
-
-                //郵便番号
-                String postalCode = PostalCodeEditText.getText().toString();
-
-                //築年数
-                String ageBuild = ageBuildEditText.getText().toString();
-
-                //物件の種類
-                int t = typesRadioGroup.getCheckedRadioButtonId();
-                int d = detachedRadioButton.getId();
-                int c = complexRadioButton.getId();
-                int s = storeRadioButton.getId();
-                int o = otherRadioButton.getId();
-                if (t==d){
-                    String type = "一戸建て";
-                }else if (t==c){
-                    String type = "集合住宅";
-                }else if (t==s){
-                    String type = "店舗";
-                }else{
-                    String type = "その他";
-                }
-                //その他の時のeditText
-                String otherForm =formEditText.getText().toString();
-
-                //その他の時
-                String otherType = typesEditText.getText().toString();
-
-                //リフォームの個所checkbox
-
-                //その他のリフォーム箇所
-                String otherPlace = reformEditText.getText().toString();
-
-                //予算任意
-                String budget = (String)budgedSpinner.getSelectedItem();
-
-                //年齢任意
-                String age = (String)ageSpinner.getSelectedItem();
-
-
-                //性別任意
-                int i = radioGroup.getCheckedRadioButtonId();
-                int m =manRadioButton.getId();
-
-                if (m == i){
-                    String sex = "男性";
-                }else{
-                    String sex = "女性";
-                }
-
-                //要望
-                String request = requestEditText.getText().toString();
-
-
-                //spinner,radio,check,editがnullのとき落ちないように
-
-
-            }
-        });
 
         view.findViewById(R.id.chatButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                save(v);
 
-
-
-
+                //bundleでflagみたいなのあげてそれならpreferenceから値を取得してリストを表示
 
             }
         });
+
+
+
+    }
+    public void save(View v){
+        //郵便番号
+        String postalCode = PostalCodeEditText.getText().toString();
+
+        //築年数
+        String ageBuild = ageBuildEditText.getText().toString();
+
+        //物件の種類
+        int t = typesRadioGroup.getCheckedRadioButtonId();
+        int d = detachedRadioButton.getId();
+        int c = complexRadioButton.getId();
+        int s = storeRadioButton.getId();
+        int o = otherRadioButton.getId();
+        if (t==d){
+            type = "一戸建て";
+        }else if (t==c){
+            type = "集合住宅";
+        }else if (t==s){
+            type = "店舗";
+        }else{
+            type = "その他";
+        }
+        //その他の時のeditText
+        String otherForm =formEditText.getText().toString();
+
+        String pro = (String)propertySpinner.getSelectedItem();
+
+        //その他の時
+        String otherType = typesEditText.getText().toString();
+
+        //リフォームの個所checkbox増やすときここだよ
+
+
+        String place = "0";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //その他のリフォーム箇所
+        String otherPlace = reformEditText.getText().toString();
+
+        //予算任意
+        String budget = (String)budgedSpinner.getSelectedItem();
+
+        //年齢任意
+        String age = (String)ageSpinner.getSelectedItem();
+
+
+        //性別任意
+        int i = radioGroup.getCheckedRadioButtonId();
+        int m =manRadioButton.getId();
+
+        if (m == i){
+            sex = "男性";
+        }else{
+            sex = "女性";
+        }
+
+        //要望
+        String request = requestEditText.getText().toString();
+        String estimate ="0";
+
+
+        //spinner,radio,check,editがnullのとき落ちないように
+
+        //必須が入ってるか
+        if (postalCode.length()>1){
+            if (ageBuild.length()>0){
+                if (type.length()>1){
+                    if (pro.length()>1){
+                        //if (リフォームの場所があるかないか){
+                        //if (その他選んだ時の処理){
+                        //if (otherPlace.length()<1){
+                            //Snackbar.make(v, "物件の種類を選択してください", Snackbar.LENGTH_LONG).show();
+                        //}
+
+                        //}else {
+                          if (request.length()>0){
+
+                              Map<String, String> data = new HashMap<String, String>();
+                              key = customerPathRef.push().getKey();
+                              data.put("postalCode" ,postalCode);
+                              data.put("ageBuild" ,ageBuild);
+                              data.put("type" ,type);
+                              data.put("otherForm" ,otherForm);
+                              data.put("pro" ,pro);
+                              data.put("otherType" ,otherType);
+                              data.put("place" ,place);
+                              data.put("otherPlace" ,otherPlace);
+                              data.put("budget" ,budget);
+                              data.put("age" ,age);
+                              data.put("sex" ,sex);
+                              data.put("estimate" ,estimate);
+                              data.put("key" ,key);
+                              Map<String, Object> childUpdates = new HashMap<>();
+                              childUpdates.put(key, data);
+                              customerPathRef.updateChildren(childUpdates);
+
+                              //MainActivityに目印送ってその時MessageFragmentにする
+
+
+
+
+
+
+
+
+
+
+                              //LoginActivity activity = (LoginActivity)getActivity();
+                              //activity.intentActivity();
+                          }else {
+                              Snackbar.make(v, "要望を入力してください", Snackbar.LENGTH_LONG).show();
+                          }
+                        //}
+
+                        //}
+                    }else {
+                        if (otherType.length()<1){
+                            Snackbar.make(v, "物件の構造を選択してください", Snackbar.LENGTH_LONG).show();
+                        }
+                    }
+                }else {
+                    if (otherForm.length()<1){
+                        Snackbar.make(v, "物件の種類を選択してください", Snackbar.LENGTH_LONG).show();
+                    }
+                }
+            }else {
+                Snackbar.make(v, "築年数を入力してください", Snackbar.LENGTH_LONG).show();
+            }
+        }else {
+            Snackbar.make(v, "郵便番号を入力してください", Snackbar.LENGTH_LONG).show();
+        }
 
 
 
