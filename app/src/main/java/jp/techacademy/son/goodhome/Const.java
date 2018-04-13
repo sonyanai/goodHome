@@ -7,7 +7,7 @@ package jp.techacademy.son.goodhome;
 public class Const {
     public static final String CustomerPath="customerPath";
     public static final String BusinessPath="businessPath";
-    //public static final String UsersPATH = "users";
+    public static final String UsersPath = "users";
     //public static final String ContentsPATH="contentsPATH";
 
     public static final String FlagKEY = "flag";

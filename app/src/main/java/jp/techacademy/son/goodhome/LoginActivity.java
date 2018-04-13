@@ -1,6 +1,7 @@
 package jp.techacademy.son.goodhome;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -97,10 +98,6 @@ public class LoginActivity extends AppCompatActivity {
                     if (mIsCreateAccount) {
 
 
-                        View view = findViewById(android.R.id.content);
-                        Snackbar.make(view, "アカウント作成に成功しました", Snackbar.LENGTH_LONG).show();
-
-
                         String mUid = user.getUid();
 
                         UserName = UserNameEditText.getText().toString();
@@ -194,6 +191,15 @@ public class LoginActivity extends AppCompatActivity {
                     View view = findViewById(android.R.id.content);
                     Snackbar.make(view, "ログインに成功しました", Snackbar.LENGTH_LONG).show();
 
+                    Bundle bundle = new Bundle();
+
+                    bundle.putString("data",flag);
+
+                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+
+
 
 
                 } else {
@@ -234,27 +240,43 @@ public class LoginActivity extends AppCompatActivity {
                 if (i == c){
                     userRef = mDataBaseReference.child(Const.CustomerPath);
                     flag = "customer";
+                    String email = mEmailEditText.getText().toString();
+                    String password = mPasswordEditText.getText().toString();
+                    UserName = UserNameEditText.getText().toString();
+
+                    if (email.length() != 0 && password.length() >= 6 && UserName.length() > 0) {
+                        // ログイン時に表示名を保存するようにフラグを立てる
+                        mIsCreateAccount = true;
+
+                        createAccount(email, password);
+                    } else {
+                        // エラーを表示する
+                        Snackbar.make(v, "正しく入力してください", Snackbar.LENGTH_LONG).show();
+                    }
+
                 }else if (i==b){
                     userRef = mDataBaseReference.child(Const.BusinessPath);
                     flag = "business";
+                    String email = mEmailEditText.getText().toString();
+                    String password = mPasswordEditText.getText().toString();
+                    UserName = UserNameEditText.getText().toString();
+
+                    if (email.length() != 0 && password.length() >= 6 && UserName.length() > 0) {
+                        // ログイン時に表示名を保存するようにフラグを立てる
+                        mIsCreateAccount = true;
+
+                        createAccount(email, password);
+                    } else {
+                        // エラーを表示する
+                        Snackbar.make(v, "正しく入力してください", Snackbar.LENGTH_LONG).show();
+                    }
+
                 }else{
                     Snackbar.make(v, "個人か企業を選択してください", Snackbar.LENGTH_LONG).show();
+
                 }
 
 
-                String email = mEmailEditText.getText().toString();
-                String password = mPasswordEditText.getText().toString();
-                UserName = UserNameEditText.getText().toString();
-
-                if (email.length() != 0 && password.length() >= 6 && UserName.length() > 0) {
-                    // ログイン時に表示名を保存するようにフラグを立てる
-                    mIsCreateAccount = true;
-
-                    createAccount(email, password);
-                } else {
-                    // エラーを表示する
-                    Snackbar.make(v, "正しく入力してください", Snackbar.LENGTH_LONG).show();
-                }
 
 
 
@@ -272,7 +294,8 @@ public class LoginActivity extends AppCompatActivity {
                 String email = mEmailEditText.getText().toString();
                 String password = mPasswordEditText.getText().toString();
 
-                if (email.length() != 0 && password.length() >= 6 && UserName.length() > 0) {
+
+                if (email.length() != 0 && password.length() >= 6) {
                     // フラグを落としておく
                     mIsCreateAccount = false;
 
@@ -335,3 +358,4 @@ public class LoginActivity extends AppCompatActivity {
 
 
 }
+

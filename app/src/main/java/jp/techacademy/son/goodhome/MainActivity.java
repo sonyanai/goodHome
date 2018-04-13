@@ -61,17 +61,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        //Fragmentで最初の画面の設定をする
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        // Fragmentを作成します
-        SearchFragment fragmentSearch = new SearchFragment();
-        // コードからFragmentを追加
-        // Fragmentの追加や削除といった変更を行う際は、Transactionを利用します
-        // 新しく追加を行うのでaddを使用します
-        // メソッドの1つ目の引数は対象のViewGroupのID、2つ目の引数は追加するfragment
-        transaction.add(R.id.container, fragmentSearch);
-        // 最後にcommitを使用することで変更を反映します
-        transaction.commit();
+
 
 
 
@@ -80,6 +70,40 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         //リスナーのセット
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        if (bundle!=null){
+            String data = bundle.getString("data");
+            if (data.equals("customer")){
+                CustomerLoginFragment fragmentCustomerLogin = new CustomerLoginFragment();
+                transaction.replace(R.id.container, fragmentCustomerLogin);
+                transaction.commit();
+            }else if (data.equals("business")){
+                BusinessLoginFragment fragmentBusinessLogin = new BusinessLoginFragment();
+                transaction.replace(R.id.container, fragmentBusinessLogin);
+                transaction.commit();
+            }
+
+        }else {
+            //Fragmentで最初の画面の設定をする
+
+            // Fragmentを作成します
+            SearchFragment fragmentSearch = new SearchFragment();
+            // コードからFragmentを追加
+            // Fragmentの追加や削除といった変更を行う際は、Transactionを利用します
+            // 新しく追加を行うのでaddを使用します
+            // メソッドの1つ目の引数は対象のViewGroupのID、2つ目の引数は追加するfragment
+            transaction.add(R.id.container, fragmentSearch);
+            // 最後にcommitを使用することで変更を反映します
+            transaction.commit();
+        }
+
+
+
     }
 
     @Override
