@@ -191,13 +191,20 @@ public class LoginActivity extends AppCompatActivity {
                     View view = findViewById(android.R.id.content);
                     Snackbar.make(view, "ログインに成功しました", Snackbar.LENGTH_LONG).show();
 
-                    Bundle bundle = new Bundle();
 
-                    bundle.putString("data",flag);
+                    if (flag!=null){
+                        Bundle bundle = new Bundle();
 
-                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                    intent.putExtras(bundle);
-                    startActivity(intent);
+                        bundle.putString("data",flag);
+
+                        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                        intent.putExtras(bundle);
+                        startActivity(intent);
+                    }else{
+                        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                        startActivity(intent);
+                    }
+
 
 
 
