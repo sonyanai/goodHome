@@ -298,19 +298,28 @@ public class LoginActivity extends AppCompatActivity {
                 InputMethodManager im = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
                 im.hideSoftInputFromWindow(v.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 
-                String email = mEmailEditText.getText().toString();
-                String password = mPasswordEditText.getText().toString();
+                int i = cbRadioGroup.getCheckedRadioButtonId();
+
+                if (i > 0) {
+
+                    String email = mEmailEditText.getText().toString();
+                    String password = mPasswordEditText.getText().toString();
 
 
-                if (email.length() != 0 && password.length() >= 6) {
-                    // フラグを落としておく
-                    mIsCreateAccount = false;
+                    if (email.length() != 0 && password.length() >= 6) {
+                        // フラグを落としておく
+                        mIsCreateAccount = false;
 
-                    login(email, password);
-                } else {
-                    // エラーを表示する
-                    Snackbar.make(v, "正しく入力してください", Snackbar.LENGTH_LONG).show();
+                        login(email, password);
+                    } else {
+                        // エラーを表示する
+                        Snackbar.make(v, "正しく入力してください", Snackbar.LENGTH_LONG).show();
+                    }
+                }else{
+                    Snackbar.make(v, "個人か企業かを選択してください", Snackbar.LENGTH_LONG).show();
                 }
+
+
             }
         });
     }
