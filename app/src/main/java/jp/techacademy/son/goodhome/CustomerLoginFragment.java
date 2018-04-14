@@ -1,6 +1,8 @@
 package jp.techacademy.son.goodhome;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -14,6 +16,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -52,6 +56,7 @@ public class CustomerLoginFragment extends Fragment {
     DatabaseReference databaseReference;
     DatabaseReference customerPathRef;
     String sex;
+    private FirebaseUser user;
 
 
     @Override
@@ -89,6 +94,7 @@ public class CustomerLoginFragment extends Fragment {
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
         customerPathRef = databaseReference.child(Const.CustomerPath);
+        user = FirebaseAuth.getInstance().getCurrentUser();
 
 
 
@@ -98,6 +104,7 @@ public class CustomerLoginFragment extends Fragment {
                 save(v);
 
                 //bundleでflagみたいなのあげてそれならpreferenceから値を取得してリストを表示
+                //
 
             }
         });
@@ -154,19 +161,6 @@ public class CustomerLoginFragment extends Fragment {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
         //その他のリフォーム箇所
         String otherPlace = reformEditText.getText().toString();
 
@@ -208,8 +202,16 @@ public class CustomerLoginFragment extends Fragment {
                         //}else {
                           if (request.length()>0){
 
+                              String mUid = user.getUid();
+                              SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
+                              String flag = sp.getString(Const.FlagKEY, "");
+                              String UserName = sp.getString(Const.NameKEY,"");
+
+
                               Map<String, String> data = new HashMap<String, String>();
                               key = customerPathRef.push().getKey();
+                              data.put("mUid",mUid);
+                              data.put("UserName",UserName);
                               data.put("postalCode" ,postalCode);
                               data.put("ageBuild" ,ageBuild);
                               data.put("type" ,type);
@@ -222,9 +224,9 @@ public class CustomerLoginFragment extends Fragment {
                               data.put("age" ,age);
                               data.put("sex" ,sex);
                               data.put("estimate" ,estimate);
-                              data.put("key" ,key);
+                              data.put("flag" ,flag);
                               Map<String, Object> childUpdates = new HashMap<>();
-                              childUpdates.put(key, data);
+                              childUpdates.put(mUid, data);
                               customerPathRef.updateChildren(childUpdates);
 
                               //MainActivityに目印送ってその時MessageFragmentにする
