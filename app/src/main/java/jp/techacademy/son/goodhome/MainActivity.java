@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
                 if(user==null){
                     View view = findViewById(android.R.id.content);
                     Snackbar.make(view, "アカウントを作成してください", Snackbar.LENGTH_LONG).show();
-
+                    /*
                     String flag ="1";
                     Bundle bundle = new Bundle();
                     bundle.putString("flag", flag);
@@ -137,10 +137,20 @@ public class MainActivity extends AppCompatActivity {
                     fragmentSearch.setArguments(bundle);
                     transaction.replace(R.id.container, fragmentSearch);
                     transaction.commit();
+                    */
+                    intentLogin();
                 }else{
-                    AccountFragment fragmentAccount = new AccountFragment();
-                    transaction.replace(R.id.container, fragmentAccount);
-                    transaction.commit();
+                    String data = bundle.getString("data");
+                    if (data.equals("customer")){
+                        CustomerAccountFragment fragmentCustomerAccount = new CustomerAccountFragment();
+                        transaction.replace(R.id.container, fragmentCustomerAccount);
+                        transaction.commit();
+                    }else {
+                        BusinessAccountFragment fragmentBusinessAccount = new BusinessAccountFragment();
+                        transaction.replace(R.id.container, fragmentBusinessAccount);
+                        transaction.commit();
+                    }
+
                 }
                 break;
             case R.id.sortButton:
