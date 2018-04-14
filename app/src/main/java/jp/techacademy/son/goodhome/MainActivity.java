@@ -1,6 +1,8 @@
 package jp.techacademy.son.goodhome;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.Snackbar;
@@ -140,7 +142,8 @@ public class MainActivity extends AppCompatActivity {
                     */
                     intentLogin();
                 }else{
-                    String data = bundle.getString("data");
+                    SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+                    String data = sp.getString(Const.FlagKEY, "");
                     if (data.equals("customer")){
                         CustomerAccountFragment fragmentCustomerAccount = new CustomerAccountFragment();
                         transaction.replace(R.id.container, fragmentCustomerAccount);

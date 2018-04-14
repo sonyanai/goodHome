@@ -27,7 +27,9 @@ public class BusinessLoginFragment extends Fragment {
     public void onViewCreated(View view,Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
+        //ログインログアウトボタン
+        //編集ボタン
+        //データを取得して表示
 
     }
 
