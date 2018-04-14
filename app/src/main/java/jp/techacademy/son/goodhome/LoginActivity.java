@@ -96,64 +96,116 @@ public class LoginActivity extends AppCompatActivity {
 
 
                     if (mIsCreateAccount) {
+                        if (flag.equals("customer")){
+                            String mUid = user.getUid();
+
+                            postalCode ="0";
+                            ageBuild ="0";
+                            type ="0";
+                            otherForm ="0";
+                            pro ="0";
+                            otherType ="0";
+                            place ="0";
+                            otherPlace ="0";
+                            budget ="0";
+                            age ="0";
+                            sex ="0";
+                            estimate ="0";
 
 
-                        String mUid = user.getUid();
+                            UserName = UserNameEditText.getText().toString();
+                            Map<String,String> data = new HashMap<String,String>();
 
-                        UserName = UserNameEditText.getText().toString();
-                        Map<String,String> data = new HashMap<String,String>();
+                            data.put("mUid",mUid);
+                            data.put("UserName",UserName);
+                            data.put("postalCode" ,postalCode);
+                            data.put("ageBuild" ,ageBuild);
+                            data.put("type" ,type);
+                            data.put("otherForm" ,otherForm);
+                            data.put("pro" ,pro);
+                            data.put("otherType" ,otherType);
+                            data.put("place" ,place);
+                            data.put("otherPlace" ,otherPlace);
+                            data.put("budget" ,budget);
+                            data.put("age" ,age);
+                            data.put("sex" ,sex);
+                            data.put("estimate" ,estimate);
+                            data.put("flag" ,flag);
 
-                        postalCode ="0";
-                        ageBuild ="0";
-                        type ="0";
-                        otherForm ="0";
-                        pro ="0";
-                        otherType ="0";
-                        place ="0";
-                        otherPlace ="0";
-                        budget ="0";
-                        age ="0";
-                        sex ="0";
-                        estimate ="0";
-
-
-
-
-
-                        data.put("mUid",mUid);
-                        data.put("UserName",UserName);
-                        data.put("postalCode" ,postalCode);
-                        data.put("ageBuild" ,ageBuild);
-                        data.put("type" ,type);
-                        data.put("otherForm" ,otherForm);
-                        data.put("pro" ,pro);
-                        data.put("otherType" ,otherType);
-                        data.put("place" ,place);
-                        data.put("otherPlace" ,otherPlace);
-                        data.put("budget" ,budget);
-                        data.put("age" ,age);
-                        data.put("sex" ,sex);
-                        data.put("estimate" ,estimate);
-                        data.put("flag" ,flag);
-
-                        Map<String,Object> childUpdates = new HashMap<>();
-                        childUpdates.put(mUid,data);
+                            Map<String,Object> childUpdates = new HashMap<>();
+                            childUpdates.put(mUid,data);
 
 
 
 
 
-                        userRef.updateChildren(childUpdates);
+                            userRef.updateChildren(childUpdates);
 
 
-                        // 表示名をPrefarenceに保存する
-                        savePersonalData(mUid,UserName,postalCode,ageBuild,type,otherForm,pro,otherType,place,otherPlace,budget,age,sex,estimate,flag);
+                            // 表示名をPrefarenceに保存する
+                            savePersonalData(mUid,UserName,postalCode,ageBuild,type,otherForm,pro,otherType,place,otherPlace,budget,age,sex,estimate,flag);
 
 
-                        // アカウント作成の時は表示名をFirebaseに保存する
-                        String email = mEmailEditText.getText().toString();
-                        String password = mPasswordEditText.getText().toString();
-                        login(email, password);
+                            // アカウント作成の時は表示名をFirebaseに保存する
+                            String email = mEmailEditText.getText().toString();
+                            String password = mPasswordEditText.getText().toString();
+                            login(email, password);
+
+                        }else {
+                            String mUid = user.getUid();
+
+                            String companyName="0";
+                            String address="0";
+                            String companyNumber="0";
+                            String sex="0";
+                            String age="0";
+                            String bitmapString="0";
+                            String totalEstimate="0";
+                            String unwatchEstimate="0";
+                            String thisPayment="0";
+                            String nextPayment="0";
+
+
+                            UserName = UserNameEditText.getText().toString();
+                            Map<String,String> data = new HashMap<String,String>();
+
+                            data.put("mUid",mUid);
+                            data.put("CompanyName" ,companyName);
+                            data.put("Address" ,address);
+                            data.put("CompanyNumber" ,companyNumber);
+                            data.put("UserName",UserName);
+                            data.put("Sex" ,sex);
+                            data.put("Age" ,age);
+                            data.put("BitmapString" ,bitmapString);
+                            data.put("TotalEstimate" ,totalEstimate);
+                            data.put("UnwatchEstimate" ,unwatchEstimate);
+                            data.put("ThisPayment" ,thisPayment);
+                            data.put("NextPayment" ,nextPayment);
+                            data.put("flag" ,flag);
+
+
+                            Map<String,Object> childUpdates = new HashMap<>();
+                            childUpdates.put(mUid,data);
+
+
+
+
+
+                            userRef.updateChildren(childUpdates);
+
+
+                            // 表示名をPrefarenceに保存する
+                            saveCompanyData(mUid,companyName,address,companyNumber,UserName,sex,age,bitmapString,totalEstimate,unwatchEstimate,thisPayment,nextPayment,flag);
+
+
+                            // アカウント作成の時は表示名をFirebaseに保存する
+                            String email = mEmailEditText.getText().toString();
+                            String password = mPasswordEditText.getText().toString();
+                            login(email, password);
+
+                        }
+
+
 
 
 
@@ -361,11 +413,36 @@ public class LoginActivity extends AppCompatActivity {
         editor.putString(Const.OtherTypeKEY, otherType);
         editor.putString(Const.PlaceKEY, place);
         editor.putString(Const.OtherPlaceKEY, otherPlace);
-        editor.putString(Const.Budget, budget);
-        editor.putString(Const.Age, age);
-        editor.putString(Const.Sex, sex);
-        editor.putString(Const.Estimate, estimate);
+        editor.putString(Const.BudgetKEY, budget);
+        editor.putString(Const.AgeKEY, age);
+        editor.putString(Const.SexKEY, sex);
+        editor.putString(Const.EstimateKEY, estimate);
         editor.putString(Const.FlagKEY, flag);
+
+
+        editor.commit();
+
+
+    }
+
+    private void saveCompanyData(String mUid,String companyName,String address,String companyNumber,String UserName,String sex,String age,String bitmapString,String totalEstimate,String unwatchEstimate,String thisPayment,String nextPayment,String flag) {
+        // Preferenceに保存する
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString(Const.mUidKEY, mUid);
+        editor.putString(Const.CompanyNameKEY,companyName );
+        editor.putString(Const.AddressKEY, address);
+        editor.putString(Const.CompanyNumberKEY, companyNumber);
+        editor.putString(Const.NameKEY, UserName);
+        editor.putString(Const.SexKEY, sex);
+        editor.putString(Const.AgeKEY, age);
+        editor.putString(Const.BitmapStringKEY, bitmapString);
+        editor.putString(Const.TotalEstimateKEY, totalEstimate);
+        editor.putString(Const.UnwatchEstimateKEY, unwatchEstimate);
+        editor.putString(Const.ThisPaymentKEY, thisPayment);
+        editor.putString(Const.NextPaymentKEY, nextPayment);
+        editor.putString(Const.FlagKEY, flag);
+
 
         editor.commit();
 
