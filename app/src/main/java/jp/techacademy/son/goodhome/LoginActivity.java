@@ -53,6 +53,7 @@ public class LoginActivity extends AppCompatActivity {
     String sex;
     String estimate;
     String flag;
+    String request;
     RadioGroup cbRadioGroup;
     RadioButton customerRadioButton;
     RadioButton businessRadioButton;
@@ -111,6 +112,8 @@ public class LoginActivity extends AppCompatActivity {
                             age ="0";
                             sex ="0";
                             estimate ="0";
+                            request ="0";
+
 
 
                             UserName = UserNameEditText.getText().toString();
@@ -130,6 +133,7 @@ public class LoginActivity extends AppCompatActivity {
                             data.put("age" ,age);
                             data.put("sex" ,sex);
                             data.put("estimate" ,estimate);
+                            data.put("request",request);
                             data.put("flag" ,flag);
 
                             Map<String,Object> childUpdates = new HashMap<>();
@@ -143,7 +147,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
                             // 表示名をPrefarenceに保存する
-                            savePersonalData(mUid,UserName,postalCode,ageBuild,type,otherForm,pro,otherType,place,otherPlace,budget,age,sex,estimate,flag);
+                            savePersonalData(mUid,UserName,postalCode,ageBuild,type,otherForm,pro,otherType,place,otherPlace,budget,age,sex,estimate,request,flag);
 
 
                             // アカウント作成の時は表示名をFirebaseに保存する
@@ -399,7 +403,7 @@ public class LoginActivity extends AppCompatActivity {
         editor.commit();
     }
 
-    private void savePersonalData(String mUid,String name,String postalCode,String ageBuild,String type,String otherForm,String pro,String otherType,String place,String otherPlace,String budget,String age,String sex,String estimate,String flag) {
+    private void savePersonalData(String mUid,String name,String postalCode,String ageBuild,String type,String otherForm,String pro,String otherType,String place,String otherPlace,String budget,String age,String sex,String estimate,String request,String flag) {
         // Preferenceに保存する
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = sp.edit();
@@ -417,6 +421,7 @@ public class LoginActivity extends AppCompatActivity {
         editor.putString(Const.AgeKEY, age);
         editor.putString(Const.SexKEY, sex);
         editor.putString(Const.EstimateKEY, estimate);
+        editor.putString(Const.RequestKEY, request);
         editor.putString(Const.FlagKEY, flag);
 
 

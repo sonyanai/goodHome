@@ -24,6 +24,7 @@ public class Const {
     public static final String BudgetKEY = "budget";
     public static final String AgeKEY = "age";
     public static final String SexKEY = "sex";
+    public static final String RequestKEY = "request";
     public static final String EstimateKEY = "estimate";
 
 

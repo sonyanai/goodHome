@@ -1,6 +1,8 @@
 package jp.techacademy.son.goodhome;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +10,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -23,6 +32,9 @@ public class BusinessLoginFragment extends Fragment {
     EditText UserNameEditText;
     ImageView CompanyImageView;
     Button okButton;
+    FirebaseUser user;
+    DatabaseReference mDataBaseReference;
+    DatabaseReference businessPathRef;
 
 
 
@@ -47,9 +59,57 @@ public class BusinessLoginFragment extends Fragment {
     public void onViewCreated(View view,Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        businessPathRef = mDataBaseReference.child(Const.BusinessPath);
+
         //ログインログアウトボタン
         //編集ボタン
         //データを取得して表示
+        view.findViewById(R.id.okButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
+
+                String mUid = user.getUid();
+                String companyName = CompanyNameEditText.getText().toString();
+                String address = AddressEditText.getText().toString();
+                String companyNumber = CompanyNumberEditText.getText().toString();
+                String UserName = UserNameEditText.getText().toString();
+
+                String sex = sp.getString(Const.SexKEY, "");
+                String age = sp.getString(Const.AgeKEY, "");
+                String bitmapString = sp.getString(Const.BitmapStringKEY, "");
+                String totalEstimate = sp.getString(Const.TotalEstimateKEY, "");
+                String unwatchEstimate = sp.getString(Const.UnwatchEstimateKEY, "");
+                String thisPayment = sp.getString(Const.ThisPaymentKEY, "");
+                String nextPayment = sp.getString(Const.NextPaymentKEY, "");
+                String flag = sp.getString(Const.FlagKEY, "");
+
+
+                Map<String,String> data = new HashMap<String,String>();
+
+                data.put("mUid",mUid);
+                data.put("CompanyName" ,companyName);
+                data.put("Address" ,address);
+                data.put("CompanyNumber" ,companyNumber);
+                data.put("UserName",UserName);
+                data.put("Sex" ,sex);
+                data.put("Age" ,age);
+                data.put("BitmapString" ,bitmapString);
+                data.put("TotalEstimate" ,totalEstimate);
+                data.put("UnwatchEstimate" ,unwatchEstimate);
+                data.put("ThisPayment" ,thisPayment);
+                data.put("NextPayment" ,nextPayment);
+                data.put("flag" ,flag);
+
+                businessPathRef.child(mUid).setValue(data);
+
+
+//                Map<String,Object> childUpdates = new HashMap<>();
+//                childUpdates.put(mUid,data);
+            }
+        });
 
     }
 

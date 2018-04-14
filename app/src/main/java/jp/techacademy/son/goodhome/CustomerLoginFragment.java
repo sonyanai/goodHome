@@ -56,7 +56,7 @@ public class CustomerLoginFragment extends Fragment {
     DatabaseReference databaseReference;
     DatabaseReference customerPathRef;
     String sex;
-    private FirebaseUser user;
+    FirebaseUser user;
 
 
     @Override
@@ -95,6 +95,40 @@ public class CustomerLoginFragment extends Fragment {
         databaseReference = FirebaseDatabase.getInstance().getReference();
         customerPathRef = databaseReference.child(Const.CustomerPath);
         user = FirebaseAuth.getInstance().getCurrentUser();
+
+
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
+
+        String postalCode = sp.getString(Const.PostalCodeKEY, "");
+        String age = sp.getString(Const.AgeKEY, "");
+        String form = sp.getString(Const.OtherFormKEY, "");
+        String type = sp.getString(Const.OtherTypeKEY, "");
+        String reform = sp.getString(Const.OtherPlaceKEY, "");
+        String request = sp.getString(Const.RequestKEY, "");
+        //String  = sp.getString(Const., "");
+
+
+
+        //郵便番号
+        PostalCodeEditText.setText(postalCode);
+        //築年数
+        ageBuildEditText.setText(age);
+        //ラジオグループ
+        //物件の種類
+        formEditText.setText(form);
+        //スピナー
+        //物件の構造
+        typesEditText.setText(type);
+        //チェックボックス
+        //リフォーム箇所
+        reformEditText.setText(reform);
+        //予算スピナー
+        //性別ラジオボタン
+        //要求
+        requestEditText.setText(request);
+
+
+        取得して表示プリファレンスでも保存businessloginでも
 
 
 
@@ -209,7 +243,6 @@ public class CustomerLoginFragment extends Fragment {
 
 
                               Map<String, String> data = new HashMap<String, String>();
-                              key = customerPathRef.push().getKey();
                               data.put("mUid",mUid);
                               data.put("UserName",UserName);
                               data.put("postalCode" ,postalCode);
@@ -225,9 +258,10 @@ public class CustomerLoginFragment extends Fragment {
                               data.put("sex" ,sex);
                               data.put("estimate" ,estimate);
                               data.put("flag" ,flag);
-                              Map<String, Object> childUpdates = new HashMap<>();
-                              childUpdates.put(mUid, data);
-                              customerPathRef.updateChildren(childUpdates);
+//                              Map<String, Object> childUpdates = new HashMap<>();
+//                              childUpdates.put(mUid, data);
+//                              customerPathRef.updateChildren(childUpdates);
+                              customerPathRef.child(mUid).setValue(data);
 
                               //MainActivityに目印送ってその時MessageFragmentにする
 
