@@ -6,11 +6,11 @@
 
     <group>
         <item
-            android:id="@+id/loginButton"
+            android:id="@+id/sortButton"
             android:icon="@drawable/plus"
             android:orderInCategory="100"
             app:showAsAction="never"
-            android:title="login"/>
+            android:title="並び替え"/>
         <item
             android:id="@+id/accountButton"
             android:icon="@drawable/plus"
@@ -18,11 +18,17 @@
             app:showAsAction="never"
             android:title="アカウント"/>
         <item
-            android:id="@+id/sortButton"
+            android:id="@+id/loginButton"
             android:icon="@drawable/plus"
             android:orderInCategory="100"
             app:showAsAction="never"
-            android:title="並び替え"/>
+            android:title="login"/>
+        <item
+            android:id="@+id/logoutButton"
+            android:icon="@drawable/plus"
+            android:orderInCategory="100"
+            app:showAsAction="never"
+            android:title="logout"/>
 
 
     </group>

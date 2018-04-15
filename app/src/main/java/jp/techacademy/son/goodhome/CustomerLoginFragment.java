@@ -69,8 +69,7 @@ public class CustomerLoginFragment extends Fragment {
     RadioButton manRadioButton;
     RadioButton womanRadioButton;
     EditText requestEditText;
-    Button searchButton;
-    Button chatButton;
+    Button accountButton;
     String type = "";
     String key;
     DatabaseReference databaseReference;
@@ -144,8 +143,7 @@ public class CustomerLoginFragment extends Fragment {
 
 
         requestEditText = (EditText)v.findViewById(R.id.requestEditText);
-        searchButton = (Button)v.findViewById(R.id.searchButton);
-        chatButton = (Button)v.findViewById(R.id.chatButton);
+        accountButton = (Button)v.findViewById(R.id.accountButton);
 
 
         return v;
@@ -171,8 +169,6 @@ public class CustomerLoginFragment extends Fragment {
         String types = sp.getString(Const.TypeKEY, "");
         String pro = sp.getString(Const.ProKEY, "");
         String budget = sp.getString(Const.BudgetKEY, "");
-        //String  = sp.getString(Const., "");
-        //String  = sp.getString(Const., "");
 
 
 
@@ -182,16 +178,16 @@ public class CustomerLoginFragment extends Fragment {
         ageBuildEditText.setText(age);
         //ラジオグループこんな感じ
         if (types.equals("一戸建て")){
-            tyId =2131296343;
+            detachedRadioButton.setChecked(true);
         }else if (types.equals("集合住宅")){
-            tyId =2131296327;
+            complexRadioButton.setChecked(true);
         }else if (types.equals("店舗")) {
-            tyId =2131296470;
+            storeRadioButton.setChecked(true);
         }else if (types.equals("その他")){
-            tyId =2131296400;
+            otherRadioButton.setChecked(true);
         }
 
-        typesRadioGroup.check(tyId);
+
         //その他の物件の種類
         formEditText.setText(form);
         //構造スピナー
@@ -227,24 +223,24 @@ public class CustomerLoginFragment extends Fragment {
 
         //予算スピナー
         if (budget.equals("～20万")){
-            budgetId= 0;
+            budgedSpinner.setSelection(0);
         }else if (budget.equals("21万～40万")){
-            budgetId= 1;
+            budgedSpinner.setSelection(1);
         }else if (budget.equals("41万～60万")){
-            budgetId= 2;
+            budgedSpinner.setSelection(2);
         }else if (budget.equals("61万～80万")){
-            budgetId= 3;
+            budgedSpinner.setSelection(3);
         }else if (budget.equals("81万～100万")){
-            budgetId= 4;
+            budgedSpinner.setSelection(4);
         }else if (budget.equals("100万～150万")){
-            budgetId= 5;
+            budgedSpinner.setSelection(5);
         }else if (budget.equals("150万～200万")){
-            budgetId= 6;
+            budgedSpinner.setSelection(6);
         }else if (budget.equals("200万～")){
-            budgetId= 7;
+            budgedSpinner.setSelection(7);
         }
 
-        budgedSpinner.setSelection(budgetId);
+        //budgedSpinner.setSelection(budgetId);
 
 
 
@@ -271,29 +267,28 @@ public class CustomerLoginFragment extends Fragment {
 
         //性別ラジオボタン
         if (sex.equals("男性")){
-            //sexKey ="manRadioButton";
-            sexId = 2131296487;
+            manRadioButton.setChecked(true);
         }else if (sex.equals("女性")){
-            //sexKey ="womanRadioButton";
-            sexId = 2131296376;
+            womanRadioButton.setChecked(true);
         }
-        radioGroup.check(sexId);
 
         //要求
         requestEditText.setText(request);
 
 
-//        取得して表示プリファレンスでも保存businessloginでも
 
 
 
-        view.findViewById(R.id.chatButton).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.accountButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 save(v);
 
-                //bundleでflagみたいなのあげてそれならpreferenceから値を取得してリストを表示
-                //
+                //bundleでflagみたいなのあげてそれならpreferenceから値を取得してアカウントを表示
+                CustomerAccountFragment fragmentCustomerAccount = new CustomerAccountFragment();
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.container,fragmentCustomerAccount,CustomerAccountFragment.TAG)
+                        .commit();
 
             }
         });
@@ -416,17 +411,16 @@ public class CustomerLoginFragment extends Fragment {
         String estimate ="0";
 
 
-        //spinner,radio,check,editがnullのとき落ちないように
 
-        //必須が入ってるか
-        if (postalCode.length()>1){
-            if (ageBuild.length()>0){
-                if (type.length()>1){
-                    if (pro.length()>1){
-                        if (place.length()>0){
-                            if (place.indexOf("その他")<0){//その他選んだ時の処理
-
-                                     if (request.length()>0){
+        //任意の時はその他かつ入力済み　または　その他なし　のときokみたいな感じで作り直し
+//        if (postalCode.length()>1){
+//            if (ageBuild.length()>0){
+//                if (type.length()>1){
+//                    if (pro.length()>1){
+//                        if (place.length()>0){
+//                            if (place.indexOf("その他")<0){//その他選んだ時の処理
+//
+//                                     if (request.length()>0){
 
                                          String mUid = user.getUid();
                                          SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
@@ -465,32 +459,32 @@ public class CustomerLoginFragment extends Fragment {
 
 
 
-                                     }else {
-                                         Snackbar.make(v, "要望を入力してください", Snackbar.LENGTH_LONG).show();
-                                     }
-                            }else {
-                                if (otherPlace.length()<1){
-                                    Snackbar.make(v, "リフォーム箇所を入力してください", Snackbar.LENGTH_LONG).show();
-                                }
-                            }
-                        }else {
-                            Snackbar.make(v, "リフォーム箇所を選択してください", Snackbar.LENGTH_LONG).show();
-
-                        }
-                    }else {
-                        Snackbar.make(v, "物件の構造を選択してください", Snackbar.LENGTH_LONG).show();
-                    }
-                }else {
-                    if (otherForm.length()<1){
-                        Snackbar.make(v, "物件の種類を選択してください", Snackbar.LENGTH_LONG).show();
-                    }
-                }
-            }else {
-                Snackbar.make(v, "築年数を入力してください", Snackbar.LENGTH_LONG).show();
-            }
-        }else {
-            Snackbar.make(v, "郵便番号を入力してください", Snackbar.LENGTH_LONG).show();
-        }
+//                                     }else {
+//                                         Snackbar.make(v, "要望を入力してください", Snackbar.LENGTH_LONG).show();
+//                                     }
+//                            }else {
+//                                if (otherPlace.length()<1){
+//                                    Snackbar.make(v, "リフォーム箇所を入力してください", Snackbar.LENGTH_LONG).show();
+//                                }
+//                            }
+//                        }else {
+//                            Snackbar.make(v, "リフォーム箇所を選択してください", Snackbar.LENGTH_LONG).show();
+//
+//                        }
+//                    }else {
+//                        Snackbar.make(v, "物件の構造を選択してください", Snackbar.LENGTH_LONG).show();
+//                    }
+//                }else {
+//                    if (otherForm.length()<1){
+//                        Snackbar.make(v, "物件の種類を選択してください", Snackbar.LENGTH_LONG).show();
+//                    }
+//                }
+//            }else {
+//                Snackbar.make(v, "築年数を入力してください", Snackbar.LENGTH_LONG).show();
+//            }
+//        }else {
+//            Snackbar.make(v, "郵便番号を入力してください", Snackbar.LENGTH_LONG).show();
+//        }
 
 
 
