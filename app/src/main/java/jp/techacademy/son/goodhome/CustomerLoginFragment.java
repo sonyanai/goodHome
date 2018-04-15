@@ -120,8 +120,6 @@ public class CustomerLoginFragment extends Fragment {
         //築年数
         ageBuildEditText.setText(age);
         //ラジオグループこんな感じ
-        //RadioGroup group = (RadioGroup)findViewById(R.id.radiogroup);
-        //group.check(R.id.radiobutton2;)
         if (pro.equals("一戸建て")){
             proId =2131296343;
         }else if (pro.equals("集合住宅")){
@@ -135,22 +133,21 @@ public class CustomerLoginFragment extends Fragment {
         typesRadioGroup.check(proId);
         //物件の種類
         formEditText.setText(form);
-        //スピナー
+        //構造スピナー
+  //      propertySpinner.setSelection();
+
 
         //物件の構造
         typesEditText.setText(type);
-        //チェックボックス
-        //リフォーム箇所
+        //チェックボックスリフォーム箇所
 
 
         reformEditText.setText(reform);
         //予算スピナー
 
-        //性別ラジオボタン
-        //ラジオグループこんな感じ
-        //RadioGroup group = (RadioGroup)findViewById(R.id.radiogroup);
-        //group.check(R.id.radiobutton2;)
+        //年齢スピナー
 
+        //性別ラジオボタン
         if (sex.equals("男性")){
             //sexKey ="manRadioButton";
             sexId = 2131296487;
@@ -208,6 +205,7 @@ public class CustomerLoginFragment extends Fragment {
         String otherForm =formEditText.getText().toString();
 
         String pro = (String)propertySpinner.getSelectedItem();
+        int ddd = propertySpinner.getSelectedItemPosition();
 
         //その他の時
         String otherType = typesEditText.getText().toString();
@@ -236,9 +234,11 @@ public class CustomerLoginFragment extends Fragment {
 
         //予算任意
         String budget = (String)budgedSpinner.getSelectedItem();
+        int dt = propertySpinner.getSelectedItemPosition();
 
         //年齢任意
         String age = (String)ageSpinner.getSelectedItem();
+        int dd = propertySpinner.getSelectedItemPosition();
 
 
         //性別任意
