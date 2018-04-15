@@ -48,6 +48,7 @@ public class CustomerLoginFragment extends Fragment {
     Spinner ageSpinner;
     RadioGroup radioGroup;
     RadioButton manRadioButton;
+    RadioButton womanRadioButton;
     EditText requestEditText;
     Button searchButton;
     Button chatButton;
@@ -57,7 +58,7 @@ public class CustomerLoginFragment extends Fragment {
     DatabaseReference customerPathRef;
     String sex;
     FirebaseUser user;
-
+    int sexKey;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -80,6 +81,8 @@ public class CustomerLoginFragment extends Fragment {
         budgedSpinner = (Spinner)v.findViewById(R.id.budgetSpinner);
         radioGroup = (RadioGroup)v.findViewById(R.id.radioGroup);
         manRadioButton = (RadioButton)v.findViewById(R.id.manRadioButton);
+        womanRadioButton =(RadioButton)v.findViewById(R.id.womanRadioButton);
+
 
         requestEditText = (EditText)v.findViewById(R.id.requestEditText);
         searchButton = (Button)v.findViewById(R.id.searchButton);
@@ -105,6 +108,7 @@ public class CustomerLoginFragment extends Fragment {
         String type = sp.getString(Const.OtherTypeKEY, "");
         String reform = sp.getString(Const.OtherPlaceKEY, "");
         String request = sp.getString(Const.RequestKEY, "");
+        String sex = sp.getString(Const.SexKEY, "");
         //String  = sp.getString(Const., "");
 
 
@@ -113,22 +117,41 @@ public class CustomerLoginFragment extends Fragment {
         PostalCodeEditText.setText(postalCode);
         //築年数
         ageBuildEditText.setText(age);
-        //ラジオグループ
+        //ラジオグループこんな感じ
+        //RadioGroup group = (RadioGroup)findViewById(R.id.radiogroup);
+        //group.check(R.id.radiobutton2;)
         //物件の種類
         formEditText.setText(form);
         //スピナー
+
         //物件の構造
         typesEditText.setText(type);
         //チェックボックス
         //リフォーム箇所
+
+
         reformEditText.setText(reform);
         //予算スピナー
+
         //性別ラジオボタン
+        //ラジオグループこんな感じ
+        //RadioGroup group = (RadioGroup)findViewById(R.id.radiogroup);
+        //group.check(R.id.radiobutton2;)
+
+        if (sex.equals("男性")){
+            //sexKey ="manRadioButton";
+            sexKey = 2131296487;
+        }else if (sex.equals("女性")){
+            //sexKey ="womanRadioButton";
+            sexKey = 2131296376;
+        }
+        radioGroup.check(sexKey);
+
         //要求
         requestEditText.setText(request);
 
 
-        取得して表示プリファレンスでも保存businessloginでも
+        //取得して表示プリファレンスでも保存businessloginでも
 
 
 
@@ -211,8 +234,10 @@ public class CustomerLoginFragment extends Fragment {
 
         if (m == i){
             sex = "男性";
+            //2131296487
         }else{
             sex = "女性";
+            //2131296376
         }
 
         //要望
@@ -269,7 +294,7 @@ public class CustomerLoginFragment extends Fragment {
 
 
 
-
+プリファレンスにも保存
 
 
 
