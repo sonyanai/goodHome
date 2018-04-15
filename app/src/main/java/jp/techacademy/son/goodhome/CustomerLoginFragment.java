@@ -58,7 +58,8 @@ public class CustomerLoginFragment extends Fragment {
     DatabaseReference customerPathRef;
     String sex;
     FirebaseUser user;
-    int sexKey;
+    int sexId;
+    int proId;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -109,6 +110,7 @@ public class CustomerLoginFragment extends Fragment {
         String reform = sp.getString(Const.OtherPlaceKEY, "");
         String request = sp.getString(Const.RequestKEY, "");
         String sex = sp.getString(Const.SexKEY, "");
+        String pro = sp.getString(Const.ProKEY, "");
         //String  = sp.getString(Const., "");
 
 
@@ -120,6 +122,17 @@ public class CustomerLoginFragment extends Fragment {
         //ラジオグループこんな感じ
         //RadioGroup group = (RadioGroup)findViewById(R.id.radiogroup);
         //group.check(R.id.radiobutton2;)
+        if (pro.equals("一戸建て")){
+            proId =2131296343;
+        }else if (pro.equals("集合住宅")){
+            proId =2131296327;
+        }else if (pro.equals("店舗")) {
+            proId =2131296470;
+        }else if (pro.equals("その他")){
+            proId =2131296400;
+        }
+
+        typesRadioGroup.check(proId);
         //物件の種類
         formEditText.setText(form);
         //スピナー
@@ -140,12 +153,12 @@ public class CustomerLoginFragment extends Fragment {
 
         if (sex.equals("男性")){
             //sexKey ="manRadioButton";
-            sexKey = 2131296487;
+            sexId = 2131296487;
         }else if (sex.equals("女性")){
             //sexKey ="womanRadioButton";
-            sexKey = 2131296376;
+            sexId = 2131296376;
         }
-        radioGroup.check(sexKey);
+        radioGroup.check(sexId);
 
         //要求
         requestEditText.setText(request);
@@ -294,7 +307,17 @@ public class CustomerLoginFragment extends Fragment {
 
 
 
-プリファレンスにも保存
+//プリファレンスにも保存
+
+
+
+
+
+
+
+
+
+
 
 
 
