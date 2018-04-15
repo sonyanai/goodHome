@@ -43,6 +43,25 @@ public class CustomerLoginFragment extends Fragment {
     EditText formEditText;
     EditText typesEditText;
     //CheckBox
+    CheckBox checkBox1;
+    CheckBox checkBox2;
+    CheckBox checkBox3;
+    CheckBox checkBox4;
+    CheckBox checkBox5;
+    CheckBox checkBox6;
+    CheckBox checkBox7;
+    CheckBox checkBox8;
+    CheckBox checkBox9;
+    CheckBox checkBox10;
+    CheckBox checkBox11;
+    CheckBox checkBox12;
+    CheckBox checkBox13;
+    CheckBox checkBox14;
+    CheckBox checkBox15;
+    CheckBox checkBox16;
+    CheckBox checkBox17;
+
+
     EditText reformEditText;
     Spinner budgedSpinner;
     Spinner ageSpinner;
@@ -60,6 +79,27 @@ public class CustomerLoginFragment extends Fragment {
     FirebaseUser user;
     int sexId;
     int proId;
+    int tyId;
+    int budgetId;
+    int ageId;
+    String check1="";
+    String check2="";
+    String check3="";
+    String check4="";
+    String check5="";
+    String check6="";
+    String check7="";
+    String check8="";
+    String check9="";
+    String check10="";
+    String check11="";
+    String check12="";
+    String check13="";
+    String check14="";
+    String check15="";
+    String check16="";
+    String check17="";
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -77,6 +117,24 @@ public class CustomerLoginFragment extends Fragment {
         propertySpinner = (Spinner)v.findViewById(R.id.propertySpinner);
         typesEditText = (EditText)v.findViewById(R.id.typesEditText);
         //CheckBox
+        checkBox1 = (CheckBox)v.findViewById(R.id.reformCheckBox1);
+        checkBox2 = (CheckBox)v.findViewById(R.id.reformCheckBox2);
+        checkBox3 = (CheckBox)v.findViewById(R.id.reformCheckBox3);
+        checkBox4 = (CheckBox)v.findViewById(R.id.reformCheckBox4);
+        checkBox5 = (CheckBox)v.findViewById(R.id.reformCheckBox5);
+        checkBox6 = (CheckBox)v.findViewById(R.id.reformCheckBox6);
+        checkBox7 = (CheckBox)v.findViewById(R.id.reformCheckBox7);
+        checkBox8 = (CheckBox)v.findViewById(R.id.reformCheckBox8);
+        checkBox9 = (CheckBox)v.findViewById(R.id.reformCheckBox9);
+        checkBox10 = (CheckBox)v.findViewById(R.id.reformCheckBox10);
+        checkBox11 = (CheckBox)v.findViewById(R.id.reformCheckBox11);
+        checkBox12 = (CheckBox)v.findViewById(R.id.reformCheckBox12);
+        checkBox13 = (CheckBox)v.findViewById(R.id.reformCheckBox13);
+        checkBox14 = (CheckBox)v.findViewById(R.id.reformCheckBox14);
+        checkBox15 = (CheckBox)v.findViewById(R.id.reformCheckBox15);
+        checkBox16 = (CheckBox)v.findViewById(R.id.reformCheckBox16);
+        checkBox17 = (CheckBox)v.findViewById(R.id.reformCheckBox17);
+
         reformEditText = (EditText)v.findViewById(R.id.reformEditText);
         ageSpinner = (Spinner)v.findViewById(R.id.ageSpinner);
         budgedSpinner = (Spinner)v.findViewById(R.id.budgetSpinner);
@@ -110,7 +168,10 @@ public class CustomerLoginFragment extends Fragment {
         String reform = sp.getString(Const.OtherPlaceKEY, "");
         String request = sp.getString(Const.RequestKEY, "");
         String sex = sp.getString(Const.SexKEY, "");
+        String types = sp.getString(Const.TypeKEY, "");
         String pro = sp.getString(Const.ProKEY, "");
+        String budget = sp.getString(Const.BudgetKEY, "");
+        //String  = sp.getString(Const., "");
         //String  = sp.getString(Const., "");
 
 
@@ -120,32 +181,93 @@ public class CustomerLoginFragment extends Fragment {
         //築年数
         ageBuildEditText.setText(age);
         //ラジオグループこんな感じ
-        if (pro.equals("一戸建て")){
-            proId =2131296343;
-        }else if (pro.equals("集合住宅")){
-            proId =2131296327;
-        }else if (pro.equals("店舗")) {
-            proId =2131296470;
-        }else if (pro.equals("その他")){
-            proId =2131296400;
+        if (types.equals("一戸建て")){
+            tyId =2131296343;
+        }else if (types.equals("集合住宅")){
+            tyId =2131296327;
+        }else if (types.equals("店舗")) {
+            tyId =2131296470;
+        }else if (types.equals("その他")){
+            tyId =2131296400;
         }
 
-        typesRadioGroup.check(proId);
-        //物件の種類
+        typesRadioGroup.check(tyId);
+        //その他の物件の種類
         formEditText.setText(form);
         //構造スピナー
-  //      propertySpinner.setSelection();
+        if (pro.equals("木造")){
+            proId = 0;
+        }else if (pro.equals("軽量鉄骨造(プレハブ)")){
+            proId = 1;
+        }else if (pro.equals("重量鉄骨造")){
+            proId = 2;
+        }else if (pro.equals("鉄筋コンクリート造")){
+            proId = 3;
+        }else if (pro.equals("ログハウス")){
+            proId = 4;
+        }else if (pro.equals("その他")){
+            proId = 5;
+        }
+        propertySpinner.setSelection(proId);
 
-
-        //物件の構造
+        //その他の物件の構造
         typesEditText.setText(type);
+
+
+
         //チェックボックスリフォーム箇所
 
 
+
+        //その他のリフォーム箇所
         reformEditText.setText(reform);
+
+
+
+
         //予算スピナー
+        if (budget.equals("～20万")){
+            budgetId= 0;
+        }else if (budget.equals("21万～40万")){
+            budgetId= 1;
+        }else if (budget.equals("41万～60万")){
+            budgetId= 2;
+        }else if (budget.equals("61万～80万")){
+            budgetId= 3;
+        }else if (budget.equals("81万～100万")){
+            budgetId= 4;
+        }else if (budget.equals("100万～150万")){
+            budgetId= 5;
+        }else if (budget.equals("150万～200万")){
+            budgetId= 6;
+        }else if (budget.equals("200万～")){
+            budgetId= 7;
+        }
+
+        budgedSpinner.setSelection(budgetId);
+
+
 
         //年齢スピナー
+
+        if (age.equals("10代")){
+            ageId= 0;
+        }else if (age.equals("20代")){
+            ageId= 1;
+        }else if (age.equals("30代")){
+            ageId= 2;
+        }else if (age.equals("40代")){
+            ageId= 3;
+        }else if (age.equals("50代")){
+            ageId= 4;
+        }else if (age.equals("60代")){
+            ageId= 5;
+        }else if (age.equals("70代～")){
+            ageId= 6;
+        }
+
+        ageSpinner.setSelection(ageId);
+
 
         //性別ラジオボタン
         if (sex.equals("男性")){
@@ -161,7 +283,7 @@ public class CustomerLoginFragment extends Fragment {
         requestEditText.setText(request);
 
 
-        //取得して表示プリファレンスでも保存businessloginでも
+//        取得して表示プリファレンスでも保存businessloginでも
 
 
 
@@ -205,26 +327,64 @@ public class CustomerLoginFragment extends Fragment {
         String otherForm =formEditText.getText().toString();
 
         String pro = (String)propertySpinner.getSelectedItem();
-        int ddd = propertySpinner.getSelectedItemPosition();
 
         //その他の時
         String otherType = typesEditText.getText().toString();
 
-        //リフォームの個所checkbox増やすときここだよ
+        //リフォームの個所
+        if (checkBox1.isChecked()){
+            check1 ="風呂";
+        }
+        if (checkBox2.isChecked()){
+            check2 ="浴室";
+        }
+        if (checkBox3.isChecked()){
+            check3 ="トイレ";
+        }
+        if (checkBox4.isChecked()){
+            check4 ="キッチン";
+        }
+        if (checkBox5.isChecked()){
+            check5 ="洗面所";
+        }
+        if (checkBox6.isChecked()){
+            check6 ="外壁";
+        }
+        if (checkBox7.isChecked()){
+            check7 ="屋根";
+        }
+        if (checkBox8.isChecked()){
+            check8 ="庭";
+        }
+        if (checkBox9.isChecked()){
+            check9 ="ベランダ・バルコニー";
+        }
+        if (checkBox10.isChecked()){
+            check10 ="リビング";
+        }
+        if (checkBox11.isChecked()){
+            check11 ="ダイニング";
+        }
+        if (checkBox12.isChecked()){
+            check12 ="洋室・和室";
+        }
+        if (checkBox13.isChecked()){
+            check13 ="玄関";
+        }
+        if (checkBox14.isChecked()){
+            check14 ="廊下";
+        }
+        if (checkBox15.isChecked()){
+            check15 ="階段";
+        }
+        if (checkBox16.isChecked()){
+            check16 ="リノベーション";
+        }
+        if (checkBox17.isChecked()){
+            check17 ="その他";
+        }
 
-
-        String place = "0";
-
-
-
-
-
-
-
-
-
-
-
+        String place =check1+check2+check3+check4+check5+check6+check7+check8+check9+check10+check11+check12+check13+check14+check15+check16+check17;
 
 
 
@@ -234,11 +394,9 @@ public class CustomerLoginFragment extends Fragment {
 
         //予算任意
         String budget = (String)budgedSpinner.getSelectedItem();
-        int dt = propertySpinner.getSelectedItemPosition();
 
         //年齢任意
         String age = (String)ageSpinner.getSelectedItem();
-        int dd = propertySpinner.getSelectedItemPosition();
 
 
         //性別任意
@@ -265,49 +423,41 @@ public class CustomerLoginFragment extends Fragment {
             if (ageBuild.length()>0){
                 if (type.length()>1){
                     if (pro.length()>1){
-                        //if (リフォームの場所があるかないか){
-                        //if (その他選んだ時の処理){
-                        //if (otherPlace.length()<1){
-                            //Snackbar.make(v, "物件の種類を選択してください", Snackbar.LENGTH_LONG).show();
-                        //}
+                        if (place.length()>0){
+                            if (place.indexOf("その他")<0){//その他選んだ時の処理
 
-                        //}else {
-                          if (request.length()>0){
+                                     if (request.length()>0){
 
-                              String mUid = user.getUid();
-                              SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
-                              String flag = sp.getString(Const.FlagKEY, "");
-                              String UserName = sp.getString(Const.NameKEY,"");
+                                         String mUid = user.getUid();
+                                         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
+                                         String flag = sp.getString(Const.FlagKEY, "");
+                                         String UserName = sp.getString(Const.NameKEY,"");
 
+                                         Map<String, String> data = new HashMap<String, String>();
+                                         data.put("mUid",mUid);
+                                         data.put("UserName",UserName);
+                                         data.put("postalCode" ,postalCode);
+                                         data.put("ageBuild" ,ageBuild);
+                                         data.put("type" ,type);
+                                         data.put("otherForm" ,otherForm);
+                                         data.put("pro" ,pro);
+                                         data.put("otherType" ,otherType);
+                                         data.put("place" ,place);
+                                         data.put("otherPlace" ,otherPlace);
+                                         data.put("budget" ,budget);
+                                         data.put("age" ,age);
+                                         data.put("sex" ,sex);
+                                         data.put("estimate" ,estimate);
+                                         data.put("request" ,request);
+                                         data.put("flag" ,flag);
 
-                              Map<String, String> data = new HashMap<String, String>();
-                              data.put("mUid",mUid);
-                              data.put("UserName",UserName);
-                              data.put("postalCode" ,postalCode);
-                              data.put("ageBuild" ,ageBuild);
-                              data.put("type" ,type);
-                              data.put("otherForm" ,otherForm);
-                              data.put("pro" ,pro);
-                              data.put("otherType" ,otherType);
-                              data.put("place" ,place);
-                              data.put("otherPlace" ,otherPlace);
-                              data.put("budget" ,budget);
-                              data.put("age" ,age);
-                              data.put("sex" ,sex);
-                              data.put("estimate" ,estimate);
-                              data.put("flag" ,flag);
 //                              Map<String, Object> childUpdates = new HashMap<>();
 //                              childUpdates.put(mUid, data);
 //                              customerPathRef.updateChildren(childUpdates);
-                              customerPathRef.child(mUid).setValue(data);
-
-                              //MainActivityに目印送ってその時MessageFragmentにする
-
-
-
-
-
-//プリファレンスにも保存
+                                         customerPathRef.child(mUid).setValue(data);
+                                         //MainActivityに目印送ってその時MessageFragmentにする
+                                         // プリファレンスにも保存
+                                         savePersonalData(mUid,UserName,postalCode,ageBuild,type,otherForm,pro,otherType,place,otherPlace,budget,age,sex,estimate,request,flag);
 
 
 
@@ -315,25 +465,20 @@ public class CustomerLoginFragment extends Fragment {
 
 
 
+                                     }else {
+                                         Snackbar.make(v, "要望を入力してください", Snackbar.LENGTH_LONG).show();
+                                     }
+                            }else {
+                                if (otherPlace.length()<1){
+                                    Snackbar.make(v, "リフォーム箇所を入力してください", Snackbar.LENGTH_LONG).show();
+                                }
+                            }
+                        }else {
+                            Snackbar.make(v, "リフォーム箇所を選択してください", Snackbar.LENGTH_LONG).show();
 
-
-
-
-
-
-
-                              //LoginActivity activity = (LoginActivity)getActivity();
-                              //activity.intentActivity();
-                          }else {
-                              Snackbar.make(v, "要望を入力してください", Snackbar.LENGTH_LONG).show();
-                          }
-                        //}
-
-                        //}
-                    }else {
-                        if (otherType.length()<1){
-                            Snackbar.make(v, "物件の構造を選択してください", Snackbar.LENGTH_LONG).show();
                         }
+                    }else {
+                        Snackbar.make(v, "物件の構造を選択してください", Snackbar.LENGTH_LONG).show();
                     }
                 }else {
                     if (otherForm.length()<1){
@@ -347,6 +492,32 @@ public class CustomerLoginFragment extends Fragment {
             Snackbar.make(v, "郵便番号を入力してください", Snackbar.LENGTH_LONG).show();
         }
 
+
+
+    }
+    private void savePersonalData(String mUid,String name,String postalCode,String ageBuild,String type,String otherForm,String pro,String otherType,String place,String otherPlace,String budget,String age,String sex,String estimate,String request,String flag) {
+        // Preferenceに保存する
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString(Const.mUidKEY, mUid);
+        editor.putString(Const.NameKEY, name);
+        editor.putString(Const.PostalCodeKEY, postalCode);
+        editor.putString(Const.AgeBuildKEY, ageBuild);
+        editor.putString(Const.TypeKEY, type);
+        editor.putString(Const.OtherFormKEY, otherForm);
+        editor.putString(Const.ProKEY, pro);
+        editor.putString(Const.OtherTypeKEY, otherType);
+        editor.putString(Const.PlaceKEY, place);
+        editor.putString(Const.OtherPlaceKEY, otherPlace);
+        editor.putString(Const.BudgetKEY, budget);
+        editor.putString(Const.AgeKEY, age);
+        editor.putString(Const.SexKEY, sex);
+        editor.putString(Const.EstimateKEY, estimate);
+        editor.putString(Const.RequestKEY, request);
+        editor.putString(Const.FlagKEY, flag);
+
+
+        editor.commit();
 
 
     }
