@@ -7,53 +7,87 @@ package jp.techacademy.son.goodhome;
 public class CustomerData {
 
     private String mUid;
-    private String mUserName;
+    private String mName;
     private String mPostalCode;
     private String mAgeBuild;
-    private String mOtherType;
+    private String mForm;
     private String mOtherForm;
     private String mPro;
-    private String mOtherPlace;
+    private String mOtherPro;
     private String mPlace;
+    private String mOtherPlace;
+    private String mBudget;
+    private String mAge;
+    private String mSex;
+    private String mEstimate;
+    private String mRequest;
 
 
 
 
-/*
-    public String getCompanyName(){
-        return mCompanyName;
-    }
-    public String getBlackName(){
-        return mBlackName;
-    }
-    public String getContent(){
-        return mContent;
-    }
-    public String getCase(){
-        return mCase;
-    }
+
     public String getUid(){
         return mUid;
     }
-    public String getDate(){
-        return mDate;
+    public String getName(){
+        return mName;
     }
-    public String getRef(){
-        return mRef;
+    public String getPostalCode(){
+        return mPostalCode;
     }
-    public String getKey(){
-        return mKey;
+    public String getAgeBuild(){
+        return mAgeBuild;
     }
-*/
-    public CustomerData(String uid,String date,String companyName, String blackName,String content,  String cases, String ref,String key) {
-//        mUid = uid;
-//        mDate = date;
-//        mCompanyName = companyName;
-//        mBlackName = blackName;
-//        mContent = content;
-//        mCase = cases;
-//        mRef = ref;
-//        mKey = key;
+    public String getForm(){
+        return mForm;
+    }
+    public String getOtherForm(){
+        return mOtherForm;
+    }
+    public String getPro(){
+        return mPro;
+    }
+    public String getOtherPro(){
+        return mOtherPro;
+    }
+    public String getPlace(){
+        return mPlace;
+    }
+    public String getOtherPlace(){
+        return mOtherPlace;
+    }
+    public String getBudget(){
+        return mBudget;
+    }
+    public String getAge(){
+        return mAge;
+    }
+    public String getSex(){
+        return mSex;
+    }
+    public String getEstimate(){
+        return mEstimate;
+    }
+    public String getRequest(){
+        return mRequest;
+    }
+
+    public CustomerData(String uid,String name,String postalCode,String ageBuild,String form,String otherForm,String pro,String otherPro,String place,String otherPlace,String budget,String age,String sex,String estimate,String request) {
+        mUid = uid;
+        mName = name;
+        mPostalCode = postalCode;
+        mAgeBuild =ageBuild;
+        mForm = form;
+        mOtherForm = otherForm;
+        mPro = pro;
+        mOtherPro = otherPro;
+        mPlace = place;
+        mOtherPlace = otherPlace;
+        mBudget = budget;
+        mAge = age;
+        mSex = sex;
+        mEstimate = estimate;
+        mRequest = request;
     }
 }
 
