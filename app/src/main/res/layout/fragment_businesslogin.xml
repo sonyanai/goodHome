@@ -15,7 +15,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/CompanyNameEditText"
+            android:id="@+id/companyNameEditText"
             android:hint="○○○株式会社"/>
         <TextView
             android:layout_width="wrap_content"
@@ -24,7 +24,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/AddressEditText"
+            android:id="@+id/addressEditText"
             android:hint="○○県○○市○○町○○○○"/>
         <TextView
             android:layout_width="wrap_content"
@@ -33,7 +33,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/CompanyNumberEditText"
+            android:id="@+id/companyNumberEditText"
             android:hint="0000000000"/>
         <TextView
             android:layout_width="wrap_content"
@@ -42,13 +42,54 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/UserNameEditText"
+            android:id="@+id/userNameEditText"
             android:hint="user"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PRを入力してください"/>
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/prEditText"
+            android:hint="新しい生活を今の家で始めよう"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="総見積り数"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/totalEstimateTextView"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="申請中の見積り"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/unwatchEstimateTextView"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="今月の支払い"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/thisPaymentTextView"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="来月の支払い"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/nextPaymentTextView"/>
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/CompanyImageView"
+            android:id="@+id/companyImageView"
             android:layout_gravity="center"
             android:background="#FFFF00"/>
         <Button

@@ -72,23 +72,14 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         //リスナーのセット
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
-
-
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
-            //Fragmentで最初の画面の設定をする
+        SearchFragment fragmentSearch = new SearchFragment();
+        transaction.add(R.id.container, fragmentSearch);
+        transaction.commit();
 
-            // Fragmentを作成します
-            SearchFragment fragmentSearch = new SearchFragment();
-            // コードからFragmentを追加
-            // Fragmentの追加や削除といった変更を行う際は、Transactionを利用します
-            // 新しく追加を行うのでaddを使用します
-            // メソッドの1つ目の引数は対象のViewGroupのID、2つ目の引数は追加するfragment
-            transaction.add(R.id.container, fragmentSearch);
-            // 最後にcommitを使用することで変更を反映します
-            transaction.commit();
-        }
+
+    }
 
 
 

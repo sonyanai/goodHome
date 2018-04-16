@@ -179,8 +179,6 @@ public class LoginActivity extends AppCompatActivity {
                             data.put("Address" ,address);
                             data.put("CompanyNumber" ,companyNumber);
                             data.put("name",name);
-                            data.put("Sex" ,sex);
-                            data.put("Age" ,age);
                             data.put("BitmapString" ,bitmapString);
                             data.put("TotalEstimate" ,totalEstimate);
                             data.put("UnwatchEstimate" ,unwatchEstimate);
@@ -441,8 +439,6 @@ public class LoginActivity extends AppCompatActivity {
         editor.putString(Const.AddressKEY, address);
         editor.putString(Const.CompanyNumberKEY, companyNumber);
         editor.putString(Const.NameKEY, name);
-        editor.putString(Const.SexKEY, sex);
-        editor.putString(Const.AgeKEY, age);
         editor.putString(Const.BitmapStringKEY, bitmapString);
         editor.putString(Const.TotalEstimateKEY, totalEstimate);
         editor.putString(Const.UnwatchEstimateKEY, unwatchEstimate);
