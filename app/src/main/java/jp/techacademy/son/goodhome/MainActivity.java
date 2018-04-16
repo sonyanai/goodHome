@@ -119,27 +119,15 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         user = FirebaseAuth.getInstance().getCurrentUser();
         switch (item.getItemId()){
-            case R.id.loginButton:
-                if(user==null) {
-                    intentLogin();
-                }else{
-                    View view = findViewById(android.R.id.content);
-                    Snackbar.make(view, "ログイン中です", Snackbar.LENGTH_LONG).show();
-                }
+            case R.id.sortButton:
+                SortFragment fragmentSort = new SortFragment();
+                transaction.replace(R.id.container, fragmentSort);
+                transaction.commit();
                 break;
             case R.id.accountButton:
                 if(user==null){
                     View view = findViewById(android.R.id.content);
                     Snackbar.make(view, "アカウントを作成してください", Snackbar.LENGTH_LONG).show();
-                    /*
-                    String flag ="1";
-                    Bundle bundle = new Bundle();
-                    bundle.putString("flag", flag);
-                    SearchFragment fragmentSearch = new SearchFragment();
-                    fragmentSearch.setArguments(bundle);
-                    transaction.replace(R.id.container, fragmentSearch);
-                    transaction.commit();
-                    */
                     intentLogin();
                 }else{
                     SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
@@ -156,10 +144,23 @@ public class MainActivity extends AppCompatActivity {
 
                 }
                 break;
-            case R.id.sortButton:
-                SortFragment fragmentSort = new SortFragment();
-                transaction.replace(R.id.container, fragmentSort);
-                transaction.commit();
+            case R.id.loginButton:
+                if(user==null) {
+                    intentLogin();
+                }else{
+                    View view = findViewById(android.R.id.content);
+                    Snackbar.make(view, "ログイン中です", Snackbar.LENGTH_LONG).show();
+                }
+                break;
+            case R.id.logoutButton:
+                if(user!=null) {
+                    LogoutFragment fragmentLogout = new LogoutFragment();
+                    transaction.replace(R.id.container, fragmentLogout);
+                    transaction.commit();
+                }else{
+                    View view = findViewById(android.R.id.content);
+                    Snackbar.make(view, "ログインしていません", Snackbar.LENGTH_LONG).show();
+                }
                 break;
         }
         return false;

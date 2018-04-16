@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 
 /**
@@ -17,6 +18,8 @@ import com.google.firebase.auth.FirebaseAuth;
 public class LogoutFragment extends Fragment {
     public static final String TAG = "LogoutFragment";
 
+
+    private FirebaseUser user;
 
 
     @Override
@@ -30,11 +33,33 @@ public class LogoutFragment extends Fragment {
     public void onViewCreated(View view,Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+
+
+        view.findViewById(R.id.loginButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                user = FirebaseAuth.getInstance().getCurrentUser();
+                if (user==null){
+                    MainActivity activity = (MainActivity) getActivity();
+                    activity.intentLogin();
+                }else{
+                    Snackbar.make(v, "ログイン中です", Snackbar.LENGTH_LONG).show();
+                }
+
+            }
+        });
+
         view.findViewById(R.id.logoutButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                Snackbar.make(v, "ログアウトしました", Snackbar.LENGTH_LONG).show();
+                user = FirebaseAuth.getInstance().getCurrentUser();
+                if (user !=null){
+                    FirebaseAuth.getInstance().signOut();
+                    Snackbar.make(v, "ログアウトしました", Snackbar.LENGTH_LONG).show();
+                }else{
+                    Snackbar.make(v, "ログインしていません", Snackbar.LENGTH_LONG).show();
+                }
+
             }
         });
     }
