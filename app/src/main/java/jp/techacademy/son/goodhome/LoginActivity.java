@@ -39,13 +39,13 @@ public class LoginActivity extends AppCompatActivity {
     EditText mPasswordEditText;
     EditText UserNameEditText;
 
-    String UserName;
+    String name;
     String postalCode;
     String ageBuild;
-    String type;
+    String form;
     String otherForm;
     String pro;
-    String otherType;
+    String otherPro;
     String place;
     String otherPlace;
     String budget;
@@ -102,10 +102,10 @@ public class LoginActivity extends AppCompatActivity {
 
                             postalCode ="0";
                             ageBuild ="0";
-                            type ="0";
+                            form ="0";
                             otherForm ="0";
                             pro ="0";
-                            otherType ="0";
+                            otherPro ="0";
                             place ="0";
                             otherPlace ="0";
                             budget ="0";
@@ -116,17 +116,17 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-                            UserName = UserNameEditText.getText().toString();
+                            name = UserNameEditText.getText().toString();
                             Map<String,String> data = new HashMap<String,String>();
 
                             data.put("mUid",mUid);
-                            data.put("UserName",UserName);
+                            data.put("UserName",name);
                             data.put("postalCode" ,postalCode);
                             data.put("ageBuild" ,ageBuild);
-                            data.put("type" ,type);
+                            data.put("form" ,form);
                             data.put("otherForm" ,otherForm);
                             data.put("pro" ,pro);
-                            data.put("otherType" ,otherType);
+                            data.put("otherPro" ,otherPro);
                             data.put("place" ,place);
                             data.put("otherPlace" ,otherPlace);
                             data.put("budget" ,budget);
@@ -147,7 +147,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
                             // 表示名をPrefarenceに保存する
-                            savePersonalData(mUid,UserName,postalCode,ageBuild,type,otherForm,pro,otherType,place,otherPlace,budget,age,sex,estimate,request,flag);
+                            savePersonalData(mUid,name,postalCode,ageBuild,form,otherForm,pro,otherPro,place,otherPlace,budget,age,sex,estimate,request,flag);
 
 
                             // アカウント作成の時は表示名をFirebaseに保存する
@@ -170,14 +170,14 @@ public class LoginActivity extends AppCompatActivity {
                             String nextPayment="0";
 
 
-                            UserName = UserNameEditText.getText().toString();
+                            name = UserNameEditText.getText().toString();
                             Map<String,String> data = new HashMap<String,String>();
 
                             data.put("mUid",mUid);
                             data.put("CompanyName" ,companyName);
                             data.put("Address" ,address);
                             data.put("CompanyNumber" ,companyNumber);
-                            data.put("UserName",UserName);
+                            data.put("name",name);
                             data.put("Sex" ,sex);
                             data.put("Age" ,age);
                             data.put("BitmapString" ,bitmapString);
@@ -199,7 +199,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
                             // 表示名をPrefarenceに保存する
-                            saveCompanyData(mUid,companyName,address,companyNumber,UserName,sex,age,bitmapString,totalEstimate,unwatchEstimate,thisPayment,nextPayment,flag);
+                            saveCompanyData(mUid,companyName,address,companyNumber,name,sex,age,bitmapString,totalEstimate,unwatchEstimate,thisPayment,nextPayment,flag);
 
 
                             // アカウント作成の時は表示名をFirebaseに保存する
@@ -305,9 +305,9 @@ public class LoginActivity extends AppCompatActivity {
                     flag = "customer";
                     String email = mEmailEditText.getText().toString();
                     String password = mPasswordEditText.getText().toString();
-                    UserName = UserNameEditText.getText().toString();
+                    name = UserNameEditText.getText().toString();
 
-                    if (email.length() != 0 && password.length() >= 6 && UserName.length() > 0) {
+                    if (email.length() != 0 && password.length() >= 6 && name.length() > 0) {
                         // ログイン時に表示名を保存するようにフラグを立てる
                         mIsCreateAccount = true;
 
@@ -322,9 +322,9 @@ public class LoginActivity extends AppCompatActivity {
                     flag = "business";
                     String email = mEmailEditText.getText().toString();
                     String password = mPasswordEditText.getText().toString();
-                    UserName = UserNameEditText.getText().toString();
+                    name = UserNameEditText.getText().toString();
 
-                    if (email.length() != 0 && password.length() >= 6 && UserName.length() > 0) {
+                    if (email.length() != 0 && password.length() >= 6 && name.length() > 0) {
                         // ログイン時に表示名を保存するようにフラグを立てる
                         mIsCreateAccount = true;
 
@@ -403,7 +403,7 @@ public class LoginActivity extends AppCompatActivity {
         editor.commit();
     }
 
-    private void savePersonalData(String mUid,String name,String postalCode,String ageBuild,String type,String otherForm,String pro,String otherType,String place,String otherPlace,String budget,String age,String sex,String estimate,String request,String flag) {
+    private void savePersonalData(String mUid,String name,String postalCode,String ageBuild,String form,String otherForm,String pro,String otherPro,String place,String otherPlace,String budget,String age,String sex,String estimate,String request,String flag) {
         // Preferenceに保存する
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = sp.edit();
@@ -411,10 +411,10 @@ public class LoginActivity extends AppCompatActivity {
         editor.putString(Const.NameKEY, name);
         editor.putString(Const.PostalCodeKEY, postalCode);
         editor.putString(Const.AgeBuildKEY, ageBuild);
-        editor.putString(Const.TypeKEY, type);
+        editor.putString(Const.FormKEY, form);
         editor.putString(Const.OtherFormKEY, otherForm);
         editor.putString(Const.ProKEY, pro);
-        editor.putString(Const.OtherTypeKEY, otherType);
+        editor.putString(Const.OtherProKEY, otherPro);
         editor.putString(Const.PlaceKEY, place);
         editor.putString(Const.OtherPlaceKEY, otherPlace);
         editor.putString(Const.BudgetKEY, budget);
@@ -430,7 +430,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private void saveCompanyData(String mUid,String companyName,String address,String companyNumber,String UserName,String sex,String age,String bitmapString,String totalEstimate,String unwatchEstimate,String thisPayment,String nextPayment,String flag) {
+    private void saveCompanyData(String mUid,String companyName,String address,String companyNumber,String name,String sex,String age,String bitmapString,String totalEstimate,String unwatchEstimate,String thisPayment,String nextPayment,String flag) {
         // Preferenceに保存する
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = sp.edit();
@@ -438,7 +438,7 @@ public class LoginActivity extends AppCompatActivity {
         editor.putString(Const.CompanyNameKEY,companyName );
         editor.putString(Const.AddressKEY, address);
         editor.putString(Const.CompanyNumberKEY, companyNumber);
-        editor.putString(Const.NameKEY, UserName);
+        editor.putString(Const.NameKEY, name);
         editor.putString(Const.SexKEY, sex);
         editor.putString(Const.AgeKEY, age);
         editor.putString(Const.BitmapStringKEY, bitmapString);

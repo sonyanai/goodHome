@@ -74,23 +74,9 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
 
-        Intent intent = getIntent();
-        Bundle bundle = intent.getExtras();
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        if (bundle!=null){
-            String data = bundle.getString("data");
-            if (data.equals("customer")){
-                CustomerLoginFragment fragmentCustomerLogin = new CustomerLoginFragment();
-                transaction.replace(R.id.container, fragmentCustomerLogin);
-                transaction.commit();
-            }else if (data.equals("business")){
-                BusinessLoginFragment fragmentBusinessLogin = new BusinessLoginFragment();
-                transaction.replace(R.id.container, fragmentBusinessLogin);
-                transaction.commit();
-            }
 
-        }else {
             //Fragmentで最初の画面の設定をする
 
             // Fragmentを作成します
@@ -102,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
             transaction.add(R.id.container, fragmentSearch);
             // 最後にcommitを使用することで変更を反映します
             transaction.commit();
-        }
+
 
 
 

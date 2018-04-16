@@ -70,16 +70,13 @@ public class CustomerLoginFragment extends Fragment {
     RadioButton womanRadioButton;
     EditText requestEditText;
     Button accountButton;
-    String type = "";
+    String form = "";
     String key;
     DatabaseReference databaseReference;
     DatabaseReference customerPathRef;
     String sex;
     FirebaseUser user;
-    int sexId;
     int proId;
-    int tyId;
-    int budgetId;
     int ageId;
     String check1="";
     String check2="";
@@ -160,16 +157,21 @@ public class CustomerLoginFragment extends Fragment {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
         String postalCode = sp.getString(Const.PostalCodeKEY, "");
-        String age = sp.getString(Const.AgeKEY, "");
-        String form = sp.getString(Const.OtherFormKEY, "");
-        String type = sp.getString(Const.OtherTypeKEY, "");
-        String reform = sp.getString(Const.PlaceKEY, "");
-        String otherReform = sp.getString(Const.OtherPlaceKEY,"");
-        String request = sp.getString(Const.RequestKEY, "");
-        String sex = sp.getString(Const.SexKEY, "");
-        String types = sp.getString(Const.TypeKEY, "");
+
+        String form = sp.getString(Const.FormKEY, "");
+        String otherForm = sp.getString(Const.OtherFormKEY, "");
         String pro = sp.getString(Const.ProKEY, "");
+        String otherPro = sp.getString(Const.OtherProKEY, "");
+        String place = sp.getString(Const.PlaceKEY, "");
+        String otherPlace = sp.getString(Const.OtherPlaceKEY,"");
         String budget = sp.getString(Const.BudgetKEY, "");
+        String age = sp.getString(Const.AgeKEY, "");
+        String sex = sp.getString(Const.SexKEY, "");
+        String request = sp.getString(Const.RequestKEY, "");
+
+
+
+
 
 
 
@@ -178,13 +180,13 @@ public class CustomerLoginFragment extends Fragment {
         //築年数
         ageBuildEditText.setText(age);
         //ラジオグループこんな感じ
-        if (types.equals("一戸建て")){
+        if (form.equals("一戸建て")){
             detachedRadioButton.setChecked(true);
-        }else if (types.equals("集合住宅")){
+        }else if (form.equals("集合住宅")){
             complexRadioButton.setChecked(true);
-        }else if (types.equals("店舗")) {
+        }else if (form.equals("店舗")) {
             storeRadioButton.setChecked(true);
-        }else if (types.equals("その他")){
+        }else if (form.equals("その他")){
             otherRadioButton.setChecked(true);
         }
 
@@ -208,67 +210,67 @@ public class CustomerLoginFragment extends Fragment {
         propertySpinner.setSelection(proId);
 
         //その他の物件の構造
-        typesEditText.setText(type);
+        typesEditText.setText(form);
 
 
 
         //チェックボックスリフォーム箇所
-        if(reform.indexOf("風呂")>0){
+        if(place.indexOf("風呂")>0){
             checkBox1.setChecked(true);
         }
-        if(reform.indexOf("浴室")>0){
+        if(place.indexOf("浴室")>0){
             checkBox2.setChecked(true);
         }
-        if(reform.indexOf("トイレ")>0){
+        if(place.indexOf("トイレ")>0){
             checkBox3.setChecked(true);
         }
-        if(reform.indexOf("キッチン")>0){
+        if(place.indexOf("キッチン")>0){
             checkBox4.setChecked(true);
         }
-        if(reform.indexOf("洗面所")>0){
+        if(place.indexOf("洗面所")>0){
             checkBox5.setChecked(true);
         }
-        if(reform.indexOf("外壁")>0){
+        if(place.indexOf("外壁")>0){
             checkBox6.setChecked(true);
         }
-        if(reform.indexOf("屋根")>0){
+        if(place.indexOf("屋根")>0){
             checkBox7.setChecked(true);
         }
-        if(reform.indexOf("庭")>0){
+        if(place.indexOf("庭")>0){
             checkBox8.setChecked(true);
         }
-        if(reform.indexOf("ベランダ・バルコニー")>0){
+        if(place.indexOf("ベランダ・バルコニー")>0){
             checkBox9.setChecked(true);
         }
-        if(reform.indexOf("リビング")>0){
+        if(place.indexOf("リビング")>0){
             checkBox10.setChecked(true);
         }
-        if(reform.indexOf("ダイニング")>0){
+        if(place.indexOf("ダイニング")>0){
             checkBox11.setChecked(true);
         }
-        if(reform.indexOf("洋室・和室")>0){
+        if(place.indexOf("洋室・和室")>0){
             checkBox12.setChecked(true);
         }
-        if(reform.indexOf("玄関")>0){
+        if(place.indexOf("玄関")>0){
             checkBox13.setChecked(true);
         }
-        if(reform.indexOf("廊下")>0){
+        if(place.indexOf("廊下")>0){
             checkBox14.setChecked(true);
         }
-        if(reform.indexOf("階段")>0){
+        if(place.indexOf("階段")>0){
             checkBox15.setChecked(true);
         }
-        if(reform.indexOf("リノベーション")>0){
+        if(place.indexOf("リノベーション")>0){
             checkBox16.setChecked(true);
         }
-        if(reform.indexOf("その他")>0){
+        if(place.indexOf("その他")>0){
             checkBox17.setChecked(true);
         }
 
 
 
         //その他のリフォーム箇所
-        otherReformEditText.setText(otherReform);
+        otherReformEditText.setText(otherPlace);
 
 
 
@@ -362,13 +364,13 @@ public class CustomerLoginFragment extends Fragment {
         int s = storeRadioButton.getId();
         int o = otherRadioButton.getId();
         if (t==d){
-            type = "一戸建て";
+            form = "一戸建て";
         }else if (t==c){
-            type = "集合住宅";
+            form = "集合住宅";
         }else if (t==s){
-            type = "店舗";
+            form = "店舗";
         }else{
-            type = "その他";
+            form = "その他";
         }
         //その他の時のeditText
         String otherForm =formEditText.getText().toString();
@@ -376,7 +378,7 @@ public class CustomerLoginFragment extends Fragment {
         String pro = (String)propertySpinner.getSelectedItem();
 
         //その他の時
-        String otherType = typesEditText.getText().toString();
+        String otherPro = typesEditText.getText().toString();
 
         //リフォームの個所
         if (checkBox1.isChecked()){
@@ -477,17 +479,17 @@ public class CustomerLoginFragment extends Fragment {
                                          String mUid = user.getUid();
                                          SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
                                          String flag = sp.getString(Const.FlagKEY, "");
-                                         String UserName = sp.getString(Const.NameKEY,"");
+                                         String name = sp.getString(Const.NameKEY,"");
 
                                          Map<String, String> data = new HashMap<String, String>();
                                          data.put("mUid",mUid);
-                                         data.put("UserName",UserName);
+                                         data.put("UserName",name);
                                          data.put("postalCode" ,postalCode);
                                          data.put("ageBuild" ,ageBuild);
-                                         data.put("type" ,type);
+                                         data.put("form" , form);
                                          data.put("otherForm" ,otherForm);
                                          data.put("pro" ,pro);
-                                         data.put("otherType" ,otherType);
+                                         data.put("otherPro" ,otherPro);
                                          data.put("place" ,place);
                                          data.put("otherPlace" ,otherPlace);
                                          data.put("budget" ,budget);
@@ -503,7 +505,7 @@ public class CustomerLoginFragment extends Fragment {
                                          customerPathRef.child(mUid).setValue(data);
                                          //MainActivityに目印送ってその時MessageFragmentにする
                                          // プリファレンスにも保存
-                                         savePersonalData(mUid,UserName,postalCode,ageBuild,type,otherForm,pro,otherType,place,otherPlace,budget,age,sex,estimate,request,flag);
+                                         savePersonalData(mUid,name,postalCode,ageBuild,form,otherForm,pro,otherPro,place,otherPlace,budget,age,sex,estimate,request,flag);
 
 
 
@@ -541,7 +543,7 @@ public class CustomerLoginFragment extends Fragment {
 
 
     }
-    private void savePersonalData(String mUid,String name,String postalCode,String ageBuild,String type,String otherForm,String pro,String otherType,String place,String otherPlace,String budget,String age,String sex,String estimate,String request,String flag) {
+    private void savePersonalData(String mUid,String name,String postalCode,String ageBuild,String form,String otherForm,String pro,String otherPro,String place,String otherPlace,String budget,String age,String sex,String estimate,String request,String flag) {
         // Preferenceに保存する
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
         SharedPreferences.Editor editor = sp.edit();
@@ -549,10 +551,10 @@ public class CustomerLoginFragment extends Fragment {
         editor.putString(Const.NameKEY, name);
         editor.putString(Const.PostalCodeKEY, postalCode);
         editor.putString(Const.AgeBuildKEY, ageBuild);
-        editor.putString(Const.TypeKEY, type);
+        editor.putString(Const.FormKEY, form);
         editor.putString(Const.OtherFormKEY, otherForm);
         editor.putString(Const.ProKEY, pro);
-        editor.putString(Const.OtherTypeKEY, otherType);
+        editor.putString(Const.OtherProKEY, otherPro);
         editor.putString(Const.PlaceKEY, place);
         editor.putString(Const.OtherPlaceKEY, otherPlace);
         editor.putString(Const.BudgetKEY, budget);

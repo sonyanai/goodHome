@@ -15,10 +15,10 @@ public class Const {
     public static final String mUidKEY = "mUid";
     public static final String PostalCodeKEY = "postalCode";
     public static final String AgeBuildKEY = "ageBuild";
-    public static final String TypeKEY = "type";
+    public static final String FormKEY = "form";
     public static final String OtherFormKEY = "otherForm";
     public static final String ProKEY = "pro";
-    public static final String OtherTypeKEY = "otherType";
+    public static final String OtherProKEY = "otherPro";
     public static final String PlaceKEY = "place";
     public static final String OtherPlaceKEY = "otherPlace";
     public static final String BudgetKEY = "budget";

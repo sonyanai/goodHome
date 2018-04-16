@@ -10,13 +10,19 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/companyNameTextView"
-            android:text="会社名"/>
+            android:id="@+id/companyNameTextView"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/addressTextView"
             android:text="住所"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/addressTextView"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="電話番号"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
