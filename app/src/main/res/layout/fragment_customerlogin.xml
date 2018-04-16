@@ -291,7 +291,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="11.性別を入力(任意)"/>
+            android:text="11.性別を選択(任意)"/>
         <RadioGroup
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

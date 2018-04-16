@@ -88,11 +88,9 @@ public class MainActivity extends AppCompatActivity {
             transaction.add(R.id.container, fragmentSearch);
             // 最後にcommitを使用することで変更を反映します
             transaction.commit();
+        }
 
 
-
-
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu){

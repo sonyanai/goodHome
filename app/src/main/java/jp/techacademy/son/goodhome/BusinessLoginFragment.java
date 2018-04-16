@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -33,7 +34,7 @@ public class BusinessLoginFragment extends Fragment {
     ImageView CompanyImageView;
     Button okButton;
     FirebaseUser user;
-    DatabaseReference mDataBaseReference;
+    DatabaseReference databaseReference;
     DatabaseReference businessPathRef;
 
 
@@ -60,7 +61,8 @@ public class BusinessLoginFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
-        businessPathRef = mDataBaseReference.child(Const.BusinessPath);
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        businessPathRef = databaseReference.child(Const.BusinessPath);
 
         //ログインログアウトボタン
         //編集ボタン

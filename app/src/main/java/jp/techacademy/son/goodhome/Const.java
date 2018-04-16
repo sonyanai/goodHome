@@ -8,10 +8,9 @@ public class Const {
     public static final String CustomerPath="customerPath";
     public static final String BusinessPath="businessPath";
     public static final String UsersPath = "users";
-    //public static final String ContentsPATH="contentsPATH";
 
     public static final String FlagKEY = "flag";
-    public static final String NameKEY = "name"; // Preferenceに表示名を保存する時のキー
+    public static final String NameKEY = "name";
     public static final String mUidKEY = "mUid";
     public static final String PostalCodeKEY = "postalCode";
     public static final String AgeBuildKEY = "ageBuild";
@@ -36,6 +35,7 @@ public class Const {
     public static final String UnwatchEstimateKEY = "unwatchEstimate";
     public static final String ThisPaymentKEY = "thisEstimate";
     public static final String NextPaymentKEY = "nextPayment";
+    public static final String PrKEY = "pr";
 
 
 
