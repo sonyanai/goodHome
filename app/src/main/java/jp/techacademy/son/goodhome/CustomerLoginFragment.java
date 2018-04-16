@@ -62,7 +62,7 @@ public class CustomerLoginFragment extends Fragment {
     CheckBox checkBox17;
 
 
-    EditText reformEditText;
+    EditText otherReformEditText;
     Spinner budgedSpinner;
     Spinner ageSpinner;
     RadioGroup radioGroup;
@@ -134,7 +134,7 @@ public class CustomerLoginFragment extends Fragment {
         checkBox16 = (CheckBox)v.findViewById(R.id.reformCheckBox16);
         checkBox17 = (CheckBox)v.findViewById(R.id.reformCheckBox17);
 
-        reformEditText = (EditText)v.findViewById(R.id.reformEditText);
+        otherReformEditText = (EditText)v.findViewById(R.id.otherReformEditText);
         ageSpinner = (Spinner)v.findViewById(R.id.ageSpinner);
         budgedSpinner = (Spinner)v.findViewById(R.id.budgetSpinner);
         radioGroup = (RadioGroup)v.findViewById(R.id.radioGroup);
@@ -163,7 +163,8 @@ public class CustomerLoginFragment extends Fragment {
         String age = sp.getString(Const.AgeKEY, "");
         String form = sp.getString(Const.OtherFormKEY, "");
         String type = sp.getString(Const.OtherTypeKEY, "");
-        String reform = sp.getString(Const.OtherPlaceKEY, "");
+        String reform = sp.getString(Const.PlaceKEY, "");
+        String otherReform = sp.getString(Const.OtherPlaceKEY,"");
         String request = sp.getString(Const.RequestKEY, "");
         String sex = sp.getString(Const.SexKEY, "");
         String types = sp.getString(Const.TypeKEY, "");
@@ -212,11 +213,62 @@ public class CustomerLoginFragment extends Fragment {
 
 
         //チェックボックスリフォーム箇所
+        if(reform.indexOf("風呂")>0){
+            checkBox1.setChecked(true);
+        }
+        if(reform.indexOf("浴室")>0){
+            checkBox2.setChecked(true);
+        }
+        if(reform.indexOf("トイレ")>0){
+            checkBox3.setChecked(true);
+        }
+        if(reform.indexOf("キッチン")>0){
+            checkBox4.setChecked(true);
+        }
+        if(reform.indexOf("洗面所")>0){
+            checkBox5.setChecked(true);
+        }
+        if(reform.indexOf("外壁")>0){
+            checkBox6.setChecked(true);
+        }
+        if(reform.indexOf("屋根")>0){
+            checkBox7.setChecked(true);
+        }
+        if(reform.indexOf("庭")>0){
+            checkBox8.setChecked(true);
+        }
+        if(reform.indexOf("ベランダ・バルコニー")>0){
+            checkBox9.setChecked(true);
+        }
+        if(reform.indexOf("リビング")>0){
+            checkBox10.setChecked(true);
+        }
+        if(reform.indexOf("ダイニング")>0){
+            checkBox11.setChecked(true);
+        }
+        if(reform.indexOf("洋室・和室")>0){
+            checkBox12.setChecked(true);
+        }
+        if(reform.indexOf("玄関")>0){
+            checkBox13.setChecked(true);
+        }
+        if(reform.indexOf("廊下")>0){
+            checkBox14.setChecked(true);
+        }
+        if(reform.indexOf("階段")>0){
+            checkBox15.setChecked(true);
+        }
+        if(reform.indexOf("リノベーション")>0){
+            checkBox16.setChecked(true);
+        }
+        if(reform.indexOf("その他")>0){
+            checkBox17.setChecked(true);
+        }
 
 
 
         //その他のリフォーム箇所
-        reformEditText.setText(reform);
+        otherReformEditText.setText(otherReform);
 
 
 
@@ -328,55 +380,55 @@ public class CustomerLoginFragment extends Fragment {
 
         //リフォームの個所
         if (checkBox1.isChecked()){
-            check1 ="風呂";
+            check1 ="風呂　";
         }
         if (checkBox2.isChecked()){
-            check2 ="浴室";
+            check2 ="浴室　";
         }
         if (checkBox3.isChecked()){
-            check3 ="トイレ";
+            check3 ="トイレ　";
         }
         if (checkBox4.isChecked()){
-            check4 ="キッチン";
+            check4 ="キッチン　";
         }
         if (checkBox5.isChecked()){
-            check5 ="洗面所";
+            check5 ="洗面所　";
         }
         if (checkBox6.isChecked()){
-            check6 ="外壁";
+            check6 ="外壁　";
         }
         if (checkBox7.isChecked()){
-            check7 ="屋根";
+            check7 ="屋根　";
         }
         if (checkBox8.isChecked()){
-            check8 ="庭";
+            check8 ="庭　";
         }
         if (checkBox9.isChecked()){
-            check9 ="ベランダ・バルコニー";
+            check9 ="ベランダ・バルコニー　";
         }
         if (checkBox10.isChecked()){
-            check10 ="リビング";
+            check10 ="リビング　";
         }
         if (checkBox11.isChecked()){
-            check11 ="ダイニング";
+            check11 ="ダイニング　";
         }
         if (checkBox12.isChecked()){
-            check12 ="洋室・和室";
+            check12 ="洋室・和室　";
         }
         if (checkBox13.isChecked()){
-            check13 ="玄関";
+            check13 ="玄関　";
         }
         if (checkBox14.isChecked()){
-            check14 ="廊下";
+            check14 ="廊下　";
         }
         if (checkBox15.isChecked()){
-            check15 ="階段";
+            check15 ="階段　";
         }
         if (checkBox16.isChecked()){
-            check16 ="リノベーション";
+            check16 ="リノベーション　";
         }
         if (checkBox17.isChecked()){
-            check17 ="その他";
+            check17 ="その他　";
         }
 
         String place =check1+check2+check3+check4+check5+check6+check7+check8+check9+check10+check11+check12+check13+check14+check15+check16+check17;
@@ -385,7 +437,7 @@ public class CustomerLoginFragment extends Fragment {
 
 
         //その他のリフォーム箇所
-        String otherPlace = reformEditText.getText().toString();
+        String otherPlace = otherReformEditText.getText().toString();
 
         //予算任意
         String budget = (String)budgedSpinner.getSelectedItem();
