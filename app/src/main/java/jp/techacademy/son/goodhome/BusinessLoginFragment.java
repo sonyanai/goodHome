@@ -80,10 +80,6 @@ public class BusinessLoginFragment extends Fragment {
                 thisPaymentTextView.setText(post.getThisPayment());
                 nextPaymentTextView.setText(post.getNextPayment());
 
-//                totalEstimate = post.getTotalEstimate();
-//                unwatchEstimate = post.getUnwatchEstimate();
-//                thisPayment = post.getThisPayment();
-//                nextPayment = post.getNextPayment();
                 //ImageView.set
             }
 
