@@ -3,8 +3,6 @@ package jp.techacademy.son.goodhome;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.provider.MediaStore;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -499,12 +497,8 @@ public class CustomerLoginFragment extends Fragment {
                                          data.put("request" ,request);
                                          data.put("flag" ,flag);
 
-//                              Map<String, Object> childUpdates = new HashMap<>();
-//                              childUpdates.put(mUid, data);
-//                              customerPathRef.updateChildren(childUpdates);
                                          customerPathRef.child(mUid).setValue(data);
-                                         //MainActivityに目印送ってその時MessageFragmentにする
-                                         // プリファレンスにも保存
+
                                          savePersonalData(mUid,name,postalCode,ageBuild,form,otherForm,pro,otherPro,place,otherPlace,budget,age,sex,estimate,request,flag);
 
 
