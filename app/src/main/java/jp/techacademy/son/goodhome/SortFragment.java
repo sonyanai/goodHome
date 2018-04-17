@@ -15,7 +15,6 @@ public class SortFragment extends Fragment {
     public static final String TAG = "SortFragment";
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
