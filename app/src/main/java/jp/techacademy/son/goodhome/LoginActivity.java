@@ -169,6 +169,9 @@ public class LoginActivity extends AppCompatActivity {
                             String thisPayment="0";
                             String nextPayment="0";
                             String pr = "0";
+                            String industry="0";
+                            String totalEvaluation="0";
+                            String moneyEvaluation="0";
 
 
                             name = UserNameEditText.getText().toString();
@@ -184,6 +187,9 @@ public class LoginActivity extends AppCompatActivity {
                             data.put("UnwatchEstimate" ,unwatchEstimate);
                             data.put("ThisPayment" ,thisPayment);
                             data.put("NextPayment" ,nextPayment);
+                            data.put("TotalEvaluation" ,totalEvaluation);
+                            data.put("MoneyEvaluation" ,moneyEvaluation);
+                            data.put("Industry" ,industry);
                             data.put("Pr" ,pr);
                             data.put("flag" ,flag);
 
@@ -199,7 +205,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
                             // 表示名をPrefarenceに保存する
-                            saveCompanyData(mUid,companyName,address,companyNumber,name,sex,age,bitmapString,totalEstimate,unwatchEstimate,thisPayment,nextPayment,pr,flag);
+                            saveCompanyData(mUid,companyName,address,companyNumber,name,sex,age,bitmapString,totalEstimate,unwatchEstimate,thisPayment,nextPayment,totalEvaluation,moneyEvaluation,industry,pr,flag);
 
 
                             // アカウント作成の時は表示名をFirebaseに保存する
@@ -430,7 +436,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private void saveCompanyData(String mUid,String companyName,String address,String companyNumber,String name,String sex,String age,String bitmapString,String totalEstimate,String unwatchEstimate,String thisPayment,String nextPayment,String pr,String flag) {
+    private void saveCompanyData(String mUid,String companyName,String address,String companyNumber,String name,String sex,String age,String bitmapString,String totalEstimate,String unwatchEstimate,String thisPayment,String nextPayment,String totalEvaluation,String moneyEvaluation,String industry,String pr,String flag) {
         // Preferenceに保存する
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = sp.edit();
@@ -444,6 +450,9 @@ public class LoginActivity extends AppCompatActivity {
         editor.putString(Const.UnwatchEstimateKEY, unwatchEstimate);
         editor.putString(Const.ThisPaymentKEY, thisPayment);
         editor.putString(Const.NextPaymentKEY, nextPayment);
+        editor.putString(Const.TotalEvaluationKEY, totalEvaluation);
+        editor.putString(Const.MoneyEvaluationKEY, moneyEvaluation);
+        editor.putString(Const.IndustryKEY, industry);
         editor.putString(Const.PrKEY, pr);
         editor.putString(Const.FlagKEY, flag);
 

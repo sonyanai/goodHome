@@ -39,6 +39,9 @@ public class BusinessAccountFragment extends Fragment {
     TextView thisPaymentTextView;
     TextView nextPaymentTextView;
     TextView prTextView;
+    TextView totalEvaluationTextView;
+    TextView moneyEvaluationTextView;
+    TextView industryTextView;
     Button businessChangeButton;
     ImageView companyImageView;
     String Uid;
@@ -62,9 +65,12 @@ public class BusinessAccountFragment extends Fragment {
             final String unwatchEstimate = (String) map.get("UnwatchEstimate");
             final String thisPayment = (String) map.get("ThisPayment");
             final String nextPayment = (String) map.get("NextPayment");
+            final String totalEvaluation = (String) map.get("TotalEvaluation");
+            final String moneyEvaluation = (String) map.get("MoneyEvaluation");
+            final String industry = (String) map.get("Industry");
             final String pr = (String) map.get("Pr");
 
-            BusinessData post = new BusinessData(mUid, companyName,address,companyNumber,name,bitmapString,totalEstimate,unwatchEstimate,thisPayment,nextPayment,pr);
+            BusinessData post = new BusinessData(mUid, companyName,address,companyNumber,name,bitmapString,totalEstimate,unwatchEstimate,thisPayment,nextPayment,totalEvaluation,moneyEvaluation,industry,pr);
 
             if (post.getUid().equals(Uid)){
                 nameTextView.setText(post.getName());
@@ -76,6 +82,9 @@ public class BusinessAccountFragment extends Fragment {
                 unwatchEstimateTextView.setText(post.getUnwatchEstimate());
                 thisPaymentTextView.setText(post.getThisPayment());
                 nextPaymentTextView.setText(post.getNextPayment());
+                totalEvaluationTextView.setText(post.getTotalEvaluation());
+                moneyEvaluationTextView.setText(post.getMoneyEvaluation());
+                industryTextView.setText(post.getIndustry());
                 prTextView.setText(post.getPr());
             }
 
@@ -113,6 +122,9 @@ public class BusinessAccountFragment extends Fragment {
         unwatchEstimateTextView = (TextView)v.findViewById(R.id.unwatchEstimateTextView);
         thisPaymentTextView = (TextView)v.findViewById(R.id.thisPaymentTextView);
         nextPaymentTextView = (TextView)v.findViewById(R.id.nextPaymentTextView);
+        totalEvaluationTextView = (TextView)v.findViewById(R.id.totalEvaluationTextView);
+        moneyEvaluationTextView = (TextView)v.findViewById(R.id.moneyEvaluationTextView);
+        industryTextView = (TextView)v.findViewById(R.id.industryTextView);
         prTextView = (TextView)v.findViewById(R.id.prTextView);
         businessChangeButton = (Button)v.findViewById(R.id.businessChangeButton);
 

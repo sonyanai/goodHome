@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -15,10 +16,11 @@ import java.util.ArrayList;
 
 
 class ViewHolder {
-    TextView companyTextView;
-    TextView blackNameTextView;
-    TextView caseTextView;
-    TextView dateTextView;
+    ImageView companyImageView;
+    TextView companyNameTextView;
+    TextView industryTextView;
+    TextView totalEvaluationTextView;
+    TextView moneyEvaluationTextView;
 }
 
 public class BusinessDataArrayListAdapter extends BaseAdapter {
@@ -35,10 +37,11 @@ public class BusinessDataArrayListAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
+        String mBitmapString = businessDataArrayList.get(position).getBitmapString();
         String mCompanyName = businessDataArrayList.get(position).getCompanyName();
-        String mBlackName = businessDataArrayList.get(position).getBlackName();
-        String mCase = businessDataArrayList.get(position).getCase();
-        String mDate = businessDataArrayList.get(position).getDate();
+        String mIndustry = businessDataArrayList.get(position).getIndustry();
+        String mTotalEvaluation = businessDataArrayList.get(position).getTotalEvaluation();
+        String mMoneyEvaluation = businessDataArrayList.get(position).getMoneyEvaluation();
 
 
         ViewHolder holder;
@@ -47,10 +50,11 @@ public class BusinessDataArrayListAdapter extends BaseAdapter {
             convertView = inflater.inflate(layoutId, parent, false);
             // FolderViewHolder を生成
             holder = new ViewHolder();
-            holder.companyTextView = (TextView) convertView.findViewById(R.id.companyTextView);
-            holder.blackNameTextView = (TextView) convertView.findViewById(R.id.blackNameTextView);
-            holder.caseTextView = (TextView) convertView.findViewById(R.id.caseTextView);
-            holder.dateTextView = (TextView) convertView.findViewById(R.id.dateTextView);
+            holder.companyImageView = (ImageView) convertView.findViewById(R.id.companyImageView);
+            holder.companyNameTextView = (TextView) convertView.findViewById(R.id.companyNameTextView);
+            holder.industryTextView = (TextView) convertView.findViewById(R.id.industryTextView);
+            holder.totalEvaluationTextView = (TextView) convertView.findViewById(R.id.totalEvaluationTextView);
+            holder.moneyEvaluationTextView = (TextView) convertView.findViewById(R.id.moneyEvaluationTextView);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -58,16 +62,19 @@ public class BusinessDataArrayListAdapter extends BaseAdapter {
 
 
         if (mCompanyName != null) {
-            holder.companyTextView.setText(mCompanyName);
+            holder.companyNameTextView.setText(mCompanyName);
         }
-        if (mBlackName != null) {
-            holder.blackNameTextView.setText(mBlackName);
+        if (mIndustry != null) {
+            holder.industryTextView.setText(mIndustry);
         }
-        if (mCase != null) {
-            holder.caseTextView.setText(mCase);
+        if (mTotalEvaluation != null) {
+            holder.totalEvaluationTextView.setText(mTotalEvaluation);
         }
-        if (mDate != null) {
-            holder.dateTextView.setText(mDate);
+        if (mMoneyEvaluation != null) {
+            holder.moneyEvaluationTextView.setText(mMoneyEvaluation);
+        }
+        if (mBitmapString != null) {
+            //holder.companyImageView.setImageDrawable(mBitmapString);
         }
 
 
@@ -89,11 +96,11 @@ public class BusinessDataArrayListAdapter extends BaseAdapter {
     @Override
     public long getItemId(int position) {
         return 0;
-        //return articleDataArrayList.get(position).getId();
+        //return businessDataArrayList.get(position).getId();
     }
 
-    public void setArticleDataArrayList(ArrayList<BusinessData> articleDataArrayList) {
-        this.businessDataArrayList = articleDataArrayList;
+    public void setBusinessDataArrayList(ArrayList<BusinessData> businessDataArrayList) {
+        this.businessDataArrayList = businessDataArrayList;
     }
 }
 

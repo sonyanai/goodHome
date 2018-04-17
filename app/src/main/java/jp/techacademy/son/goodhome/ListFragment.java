@@ -50,9 +50,12 @@ public class ListFragment extends Fragment {
             final String unwatchEstimate = (String) map.get("UnwatchEstimate");
             final String thisPayment = (String) map.get("ThisPayment");
             final String nextPayment = (String) map.get("NextPayment");
+            final String totalEvaluation = (String) map.get("TotalEvaluation");
+            final String moneyEvaluation = (String) map.get("MoneyEvaluation");
+            final String industry = (String)map.get("Industry");
             final String pr = (String) map.get("Pr");
 
-            BusinessData post = new BusinessData(mUid, companyName,address,companyNumber,name,bitmapString,totalEstimate,unwatchEstimate,thisPayment,nextPayment,pr);
+            BusinessData post = new BusinessData(mUid, companyName,address,companyNumber,name,bitmapString,totalEstimate,unwatchEstimate,thisPayment,nextPayment,totalEvaluation,moneyEvaluation,industry,pr);
             businessDataArrayList.add(post);
 
 

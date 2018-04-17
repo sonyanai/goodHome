@@ -35,6 +35,9 @@ public class Const {
     public static final String UnwatchEstimateKEY = "unwatchEstimate";
     public static final String ThisPaymentKEY = "thisEstimate";
     public static final String NextPaymentKEY = "nextPayment";
+    public static final String TotalEvaluationKEY = "totalEvaluation";
+    public static final String MoneyEvaluationKEY = "moneyEvaluation";
+    public static final String IndustryKEY = "industry";
     public static final String PrKEY = "pr";
 
 

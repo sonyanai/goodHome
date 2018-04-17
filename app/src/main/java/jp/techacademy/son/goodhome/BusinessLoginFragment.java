@@ -46,6 +46,9 @@ public class BusinessLoginFragment extends Fragment {
     TextView unwatchEstimateTextView;
     TextView thisPaymentTextView;
     TextView nextPaymentTextView;
+    TextView totalEvaluationTextView;
+    TextView moneyEvaluationTextView;
+    TextView industryTextView;
     String flag;
 
 
@@ -65,9 +68,12 @@ public class BusinessLoginFragment extends Fragment {
             final String unwatchEstimate = (String) map.get("UnwatchEstimate");
             final String thisPayment = (String) map.get("ThisPayment");
             final String nextPayment = (String) map.get("NextPayment");
+            final String totalEvaluation = (String) map.get("TotalEvaluation");
+            final String moneyEvaluation = (String) map.get("MoneyEvaluation");
+            final String industry = (String)map.get("Industry");
             final String pr = (String) map.get("Pr");
 
-            BusinessData post = new BusinessData(mUids, companyNames,addresss,companyNumbers,names,bitmapStrings,totalEstimate,unwatchEstimate,thisPayment,nextPayment,pr);
+            BusinessData post = new BusinessData(mUids, companyNames,addresss,companyNumbers,names,bitmapStrings,totalEstimate,unwatchEstimate,thisPayment,nextPayment,totalEvaluation,moneyEvaluation,industry,pr);
 
             if (post.getUid().equals(Uid)){
                 companyNameEditText.setText(post.getCompanyName());
@@ -79,6 +85,9 @@ public class BusinessLoginFragment extends Fragment {
                 unwatchEstimateTextView.setText(post.getUnwatchEstimate());
                 thisPaymentTextView.setText(post.getThisPayment());
                 nextPaymentTextView.setText(post.getNextPayment());
+                totalEvaluationTextView.setText(post.getTotalEvaluation());
+                moneyEvaluationTextView.setText(post.getMoneyEvaluation());
+                industryTextView.setText(post.getIndustry());
 
                 //ImageView.set
             }
@@ -119,6 +128,11 @@ public class BusinessLoginFragment extends Fragment {
         unwatchEstimateTextView = (TextView)v.findViewById(R.id.unwatchEstimateTextView);
         thisPaymentTextView = (TextView)v.findViewById(R.id.thisPaymentTextView);
         nextPaymentTextView = (TextView)v.findViewById(R.id.nextPaymentTextView);
+        totalEvaluationTextView = (TextView)v.findViewById(R.id.totalEvaluationTextView);
+        moneyEvaluationTextView = (TextView)v.findViewById(R.id.moneyEvaluationTextView);
+        industryTextView = (TextView)v.findViewById(R.id.industryTextView);
+
+
         okButton = (Button)v.findViewById(R.id.okButton);
 
 
@@ -156,6 +170,9 @@ public class BusinessLoginFragment extends Fragment {
                 String unwatchEstimate = unwatchEstimateTextView.getText().toString();
                 String thisPayment = thisPaymentTextView.getText().toString();
                 String nextPayment = nextPaymentTextView.getText().toString();
+                String moneyEvaluation = moneyEvaluationTextView.getText().toString();
+                String totalEvaluation = totalEvaluationTextView.getText().toString();
+                String industry = industryTextView.getText().toString();
 
 
 
@@ -172,12 +189,15 @@ public class BusinessLoginFragment extends Fragment {
                 data.put("UnwatchEstimate", unwatchEstimate);
                 data.put("ThisPayment", thisPayment);
                 data.put("NextPayment", nextPayment);
+                data.put("TotalEvaluation", totalEvaluation);
+                data.put("MoneyEvaluation", moneyEvaluation);
+                data.put("Industry",industry);
 
                 data.put("Pr",pr);
                 data.put("flag", flag);
 
                 businessPathRef.child(Uid).setValue(data);
-                saveBusinessData(Uid,companyName,address,companyNumber,UserName,bitmapString,totalEstimate,unwatchEstimate,thisPayment,nextPayment,pr,flag);
+                saveBusinessData(Uid,companyName,address,companyNumber,UserName,bitmapString,totalEstimate,unwatchEstimate,thisPayment,nextPayment,totalEvaluation,moneyEvaluation,pr,flag);
 
                 BusinessAccountFragment fragmentBusinessAccount = new BusinessAccountFragment();
                 getFragmentManager().beginTransaction()
@@ -188,7 +208,7 @@ public class BusinessLoginFragment extends Fragment {
         });
     }
 
-    private void saveBusinessData(String Uid,String companyName,String address,String companyNumber,String UserName,String bitmapString,String totalEstimate,String unwatchEstimate,String thisPayment,String nextPayment,String pr,String flag) {
+    private void saveBusinessData(String Uid,String companyName,String address,String companyNumber,String UserName,String bitmapString,String totalEstimate,String unwatchEstimate,String thisPayment,String nextPayment,String totalEvaluation,String moneyEvaluation,String pr,String flag) {
         // Preferenceに保存する
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
         SharedPreferences.Editor editor = sp.edit();
@@ -202,6 +222,8 @@ public class BusinessLoginFragment extends Fragment {
         editor.putString(Const.UnwatchEstimateKEY, unwatchEstimate);
         editor.putString(Const.ThisPaymentKEY, thisPayment);
         editor.putString(Const.NextPaymentKEY, nextPayment);
+        editor.putString(Const.TotalEvaluationKEY, totalEvaluation);
+        editor.putString(Const.MoneyEvaluationKEY, moneyEvaluation);
         editor.putString(Const.PrKEY, pr);
         editor.putString(Const.FlagKEY, flag);
 

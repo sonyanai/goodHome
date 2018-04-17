@@ -16,6 +16,9 @@ public class BusinessData {
     private String mUnwatchEstimate;
     private String mThisPayment;
     private String mNextPayment;
+    private String mTotalEvaluation;
+    private String mMoneyEvaluation;
+    private String mIndustry;
     private String mPr;
 
 
@@ -50,11 +53,20 @@ public class BusinessData {
     public String getNextPayment(){
         return mNextPayment;
     }
+    public String getTotalEvaluation(){
+        return  mTotalEvaluation;
+    }
+    public String getMoneyEvaluation(){
+        return mMoneyEvaluation;
+    }
+    public String getIndustry(){
+        return mIndustry;
+    }
     public String getPr(){
         return mPr;
     }
 
-    public BusinessData(String uid,String companyName,String address,String companyNumber,String name,String bitmapString,String totalEstimate,String unwatchEstimate,String thisPayment,String nextPayment,String pr) {
+    public BusinessData(String uid,String companyName,String address,String companyNumber,String name,String bitmapString,String totalEstimate,String unwatchEstimate,String thisPayment,String nextPayment,String totalEvaluation,String moneyEvaluation,String industry,String pr) {
         mUid = uid;
         mCompanyName = companyName;
         mAddress = address;
@@ -65,6 +77,9 @@ public class BusinessData {
         mUnwatchEstimate = unwatchEstimate;
         mThisPayment = thisPayment;
         mNextPayment = nextPayment;
+        mTotalEvaluation = totalEvaluation;
+        mMoneyEvaluation = moneyEvaluation;
+        mIndustry = industry;
         mPr = pr;
     }
 }
