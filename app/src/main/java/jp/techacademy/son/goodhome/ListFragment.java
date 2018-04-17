@@ -14,6 +14,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 
@@ -24,11 +25,13 @@ import java.util.HashMap;
 public class ListFragment extends Fragment {
     public static final String TAG = "ListFragment";
 
-    ListView listView;
-
+    ListView mListView;
     DatabaseReference databaseReference;
     DatabaseReference userPathRef;
     private FirebaseUser user;
+    public ArrayList<BusinessData> businessDataArrayList;
+    private BusinessDataArrayListAdapter mAdapter;
+
 
 
 
@@ -50,6 +53,23 @@ public class ListFragment extends Fragment {
             final String pr = (String) map.get("Pr");
 
             BusinessData post = new BusinessData(mUid, companyName,address,companyNumber,name,bitmapString,totalEstimate,unwatchEstimate,thisPayment,nextPayment,pr);
+            businessDataArrayList.add(post);
+
+
+            mAdapter.setBusinessDataArrayList(businessDataArrayList);
+            mListView.setAdapter(mAdapter);
+            mAdapter.notifyDataSetChanged();
+
+//            if (gyousyu.equals("reform")){
+//                if(post.getGyousyu.equals("reform")){
+//                    list.add(post);
+//                }
+//            }else if (gyousyu.equals("kaitai")){
+//                if (post.getGyousyu.equals("kaitai")){
+//                    list.add(post);
+//                }
+//            }else if ()
+//
 
             //ListViewについか
 
@@ -77,7 +97,9 @@ public class ListFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
         View v = inflater.inflate(R.layout.fragment_list,container,false);
 
-        listView = (ListView)v.findViewById(R.id.listView);
+        mListView = (ListView)v.findViewById(R.id.listView);
+        businessDataArrayList = new ArrayList<BusinessData>();
+        mAdapter = new BusinessDataArrayListAdapter(this.getActivity(), R.layout.new_list);
 
         return v;
     }
@@ -86,18 +108,17 @@ public class ListFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         Bundle bundle = getArguments();
-        String flag = bundle.getString("flag");//searchfragmentからきた
-
-        if (flag.equals("reform")){
-            databaseReference = FirebaseDatabase.getInstance().getReference();
-            userPathRef = databaseReference.child(Const.BusinessPath);
-            userPathRef.addChildEventListener(mEventListener);
-
-        }else if (flag.equals("rebuild")){
-            databaseReference = FirebaseDatabase.getInstance().getReference();
-            userPathRef = databaseReference.child(Const.BusinessPath);
-            userPathRef.addChildEventListener(mEventListener);
+        if (bundle!=null){
+            String flag = bundle.getString("flag");//searchfragmentからきた
         }
+
+
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        userPathRef = databaseReference.child(Const.BusinessPath);
+        userPathRef.addChildEventListener(mEventListener);
+
+
+
     }
 
 }

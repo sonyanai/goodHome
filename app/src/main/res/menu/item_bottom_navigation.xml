@@ -3,8 +3,8 @@
 
 <group android:checkableBehavior="single">
     <item
-        android:id="@+id/item_Search"
-        android:title="s"
+        android:id="@+id/item_List"
+        android:title="l"
         android:icon="@drawable/ic_launcher_background"/>
     <item
         android:id="@+id/item_Favorite"

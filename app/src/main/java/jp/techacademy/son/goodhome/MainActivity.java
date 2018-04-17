@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    public SearchFragment fragmentSearch;
+    public ListFragment fragmentList;
     public FavoriteFragment fragmentFavorite;
     public MessageFragment fragmentMessage;
 
@@ -33,9 +33,9 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             switch (item.getItemId()) {
-                case R.id.item_Search:
-                    fragmentSearch = new SearchFragment();
-                    transaction.replace(R.id.container, fragmentSearch);
+                case R.id.item_List:
+                    fragmentList = new ListFragment();
+                    transaction.replace(R.id.container, fragmentList);
                     transaction.commit();
                     return true;
 
@@ -74,8 +74,8 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
-        SearchFragment fragmentSearch = new SearchFragment();
-        transaction.add(R.id.container, fragmentSearch);
+        ListFragment fragmentList = new ListFragment();
+        transaction.add(R.id.container, fragmentList);
         transaction.commit();
 
 
