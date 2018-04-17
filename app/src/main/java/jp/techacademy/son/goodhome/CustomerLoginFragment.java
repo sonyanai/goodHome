@@ -510,44 +510,33 @@ public class CustomerLoginFragment extends Fragment {
         String request = requestEditText.getText().toString();
         String estimate ="0";
 
+        String mUid = user.getUid();
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        String flag = sp.getString(Const.FlagKEY, "");
+        String name = sp.getString(Const.NameKEY,"");
 
+        Map<String, String> data = new HashMap<String, String>();
+        data.put("mUid",mUid);
+        data.put("UserName",name);
+        data.put("postalCode" ,postalCode);
+        data.put("ageBuild" ,ageBuild);
+        data.put("form" , form);
+        data.put("otherForm" ,otherForm);
+        data.put("pro" ,pro);
+        data.put("otherPro" ,otherPro);
+        data.put("place" ,place);
+        data.put("otherPlace" ,otherPlace);
+        data.put("budget" ,budget);
+        data.put("age" ,age);
+        data.put("sex" ,sex);
+        data.put("estimate" ,estimate);
+        data.put("request" ,request);
+        data.put("flag" ,flag);
 
-        //任意の時はその他かつ入力済み　または　その他なし　のときokみたいな感じで作り直し
-//        if (postalCode.length()>1){
-//            if (ageBuild.length()>0){
-//                if (type.length()>1){
-//                    if (pro.length()>1){
-//                        if (place.length()>0){
-//                            if (place.indexOf("その他")<0){//その他選んだ時の処理
-//
-//                                     if (request.length()>0){
+        customerPathRef.child(mUid).setValue(data);
 
-                                         String mUid = user.getUid();
-                                         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
-                                         String flag = sp.getString(Const.FlagKEY, "");
-                                         String name = sp.getString(Const.NameKEY,"");
+        savePersonalData(mUid,name,postalCode,ageBuild,form,otherForm,pro,otherPro,place,otherPlace,budget,age,sex,estimate,request,flag);
 
-                                         Map<String, String> data = new HashMap<String, String>();
-                                         data.put("mUid",mUid);
-                                         data.put("UserName",name);
-                                         data.put("postalCode" ,postalCode);
-                                         data.put("ageBuild" ,ageBuild);
-                                         data.put("form" , form);
-                                         data.put("otherForm" ,otherForm);
-                                         data.put("pro" ,pro);
-                                         data.put("otherPro" ,otherPro);
-                                         data.put("place" ,place);
-                                         data.put("otherPlace" ,otherPlace);
-                                         data.put("budget" ,budget);
-                                         data.put("age" ,age);
-                                         data.put("sex" ,sex);
-                                         data.put("estimate" ,estimate);
-                                         data.put("request" ,request);
-                                         data.put("flag" ,flag);
-
-                                         customerPathRef.child(mUid).setValue(data);
-
-                                         savePersonalData(mUid,name,postalCode,ageBuild,form,otherForm,pro,otherPro,place,otherPlace,budget,age,sex,estimate,request,flag);
 
 
         CustomerAccountFragment fragmentCustomerAccount = new CustomerAccountFragment();
@@ -556,40 +545,8 @@ public class CustomerLoginFragment extends Fragment {
                 .commit();
 
 
-
-
-
-
-
-
-
-
-//                                     }else {
-//                                         Snackbar.make(v, "要望を入力してください", Snackbar.LENGTH_LONG).show();
-//                                     }
-//                            }else {
-//                                if (otherPlace.length()<1){
-//                                    Snackbar.make(v, "リフォーム箇所を入力してください", Snackbar.LENGTH_LONG).show();
-//                                }
-//                            }
-//                        }else {
-//                            Snackbar.make(v, "リフォーム箇所を選択してください", Snackbar.LENGTH_LONG).show();
-//
-//                        }
-//                    }else {
-//                        Snackbar.make(v, "物件の構造を選択してください", Snackbar.LENGTH_LONG).show();
-//                    }
-//                }else {
-//                    if (otherForm.length()<1){
-//                        Snackbar.make(v, "物件の種類を選択してください", Snackbar.LENGTH_LONG).show();
-//                    }
-//                }
-//            }else {
-//                Snackbar.make(v, "築年数を入力してください", Snackbar.LENGTH_LONG).show();
-//            }
-//        }else {
 //            Snackbar.make(v, "郵便番号を入力してください", Snackbar.LENGTH_LONG).show();
-//        }
+
 
 
 
