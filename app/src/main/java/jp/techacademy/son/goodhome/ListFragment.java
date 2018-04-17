@@ -28,7 +28,6 @@ public class ListFragment extends Fragment {
     ListView mListView;
     DatabaseReference databaseReference;
     DatabaseReference userPathRef;
-    private FirebaseUser user;
     public ArrayList<BusinessData> businessDataArrayList;
     private BusinessDataArrayListAdapter mAdapter;
 
@@ -36,7 +35,7 @@ public class ListFragment extends Fragment {
 
 
 
-    ChildEventListener mEventListener = new ChildEventListener() {
+    ChildEventListener bEventListener = new ChildEventListener() {
         @Override
         public void onChildAdded(final DataSnapshot dataSnapshot, String s) {
             HashMap map = (HashMap) dataSnapshot.getValue();
@@ -118,7 +117,12 @@ public class ListFragment extends Fragment {
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
         userPathRef = databaseReference.child(Const.BusinessPath);
-        userPathRef.addChildEventListener(mEventListener);
+
+
+
+
+
+        userPathRef.addChildEventListener(bEventListener);
 
 
 
