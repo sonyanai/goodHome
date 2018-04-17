@@ -12,6 +12,7 @@
     </string-array>
 
     <string-array name="BudgetList">
+        <item>選択する</item>
         <item>～20万</item>
         <item>21万～40万</item>
         <item>41万～60万</item>
@@ -23,6 +24,7 @@
     </string-array>
 
     <string-array name="AgeList">
+        <item>選択する</item>
         <item>10代</item>
         <item>20代</item>
         <item>30代</item>

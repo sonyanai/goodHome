@@ -300,6 +300,11 @@
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/otherSexRadioButton"
+                android:text="選択する"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:id="@+id/manRadioButton"
                 android:text="男性"/>
             <RadioButton

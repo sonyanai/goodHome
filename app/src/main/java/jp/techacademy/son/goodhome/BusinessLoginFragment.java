@@ -179,6 +179,11 @@ public class BusinessLoginFragment extends Fragment {
                 businessPathRef.child(Uid).setValue(data);
                 saveBusinessData(Uid,companyName,address,companyNumber,UserName,bitmapString,totalEstimate,unwatchEstimate,thisPayment,nextPayment,pr,flag);
 
+                BusinessAccountFragment fragmentBusinessAccount = new BusinessAccountFragment();
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.container,fragmentBusinessAccount,BusinessAccountFragment.TAG)
+                        .commit();
+
             }
         });
     }
