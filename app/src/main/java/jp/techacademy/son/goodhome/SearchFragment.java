@@ -51,7 +51,12 @@ public class SearchFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+                flag = "reform";
+                Bundle bundle = new Bundle();
+                bundle.putString("flag", flag);
+
                 ListFragment fragmentList = new ListFragment();
+                fragmentList.setArguments(bundle);
                 getFragmentManager().beginTransaction()
                         .replace(R.id.container,fragmentList,ListFragment.TAG)
                         .commit();
@@ -63,13 +68,17 @@ public class SearchFragment extends Fragment {
         view.findViewById(R.id.rebuildButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                flag = "rebuild";
+
+                //bundleで値飛ばしてどちらか表示
+                Bundle bundle = new Bundle();
+                bundle.putString("flag", flag);
 
                 ListFragment fragmentList = new ListFragment();
+                fragmentList.setArguments(bundle);
                 getFragmentManager().beginTransaction()
                         .replace(R.id.container,fragmentList,ListFragment.TAG)
                         .commit();
-
-
             }
         });
 
